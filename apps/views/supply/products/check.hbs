@@ -1,0 +1,191 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kiểm duyệt hàng hóa</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Kiểm duyệt hàng hóa</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.card -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <form action="/supply/products/seach" method="get">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control select2bs4" multiple="multiple" style="width: 100%;" name="category">
+                                                    <option>Đặc sản miền trung</option>
+                                                    <option>Đặc sản miền nam</option>
+                                                    <option>Đặc sản miền bắc</option>
+                                                </select>
+                                            </div>
+                                            <!-- /.form-group -->
+                                            <div class="form-group">
+                                                <select class="form-control select2bs4" style="width: 100%;" name="branch">
+                                                    <option value="0" selected="selected">Lựa chọn thương hiệu</option>
+                                                    <option>Bến Tre</option>
+                                                    <option>Hưng Yên</option>
+                                                </select>
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control select2bs4" style="width: 100%;" name="branch">
+                                                    <option value="0" selected="selected">Lựa chọn nhà cung cấp</option>
+                                                    <option>Bến Tre</option>
+                                                    <option>Hưng Yên</option>
+                                                </select>
+                                            </div>
+                                            <!-- /.form-group -->
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="code" name="code" placeholder="Mã sản phẩm">
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <div class="box-footer" align="center">
+                                        <button type="submit" class="btn btn-outline-danger">Tìm kiếm</button>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!-- /.row -->
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá (vnđ)</th>
+                                    <th>Trạng thái</th>
+                                    <th style="width: 20%">Thao tác</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>ABC</td>
+                                    <td>Dừa bến tre</td>
+                                    <td>10</td>
+                                    <td>
+                                       2.000.000/quả
+                                    </td>
+                                    <td>
+                                    Chờ kiểm duyệt
+                                    </td>
+                                    <td class="project-actions text-right">
+                                      <a  class="btn btn-info btn-sm" href="/supply/products/updated">
+                                            <i class="fas fa-check-circle">
+                                            </i>
+                                         Kiểm duyệt
+                                      </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>ABC</td>
+                                    <td>Dừa bến tre</td>
+                                    <td>10</td>
+                                    <td>
+                                        2.000.000/quả
+                                    </td>
+                                    <td>
+                                        Chờ kiểm duyệt
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a  class="btn btn-info btn-sm" href="/supply/products/updated">
+                                            <i class="fas fa-check-circle">
+                                            </i>
+                                            Kiểm duyệt
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>ABC</td>
+                                    <td>Dừa bến tre</td>
+                                    <td>10</td>
+                                    <td>
+                                        2.000.000/quả
+                                    </td>
+                                    <td>
+                                      Chờ kiểm duyệt
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a  class="btn btn-info btn-sm" href="/supply/products/updated">
+                                            <i class="fas fa-check-circle">
+                                            </i>
+                                            Kiểm duyệt
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Trạng thái</th>
+                                    <th style="width: 20%">Thao tác</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!---- Modal Xác nhận xóa-->
+
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa tài khoản</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                    <div class="modal-body">
+                        <p>Đồng ý xóa tài khoản <b><span id="name"></span></b>?</p>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <form role="form" id="dellForm" method="DELETE">
+                                <input type="hidden" name="_token">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                            </form>
+                        </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    </div>

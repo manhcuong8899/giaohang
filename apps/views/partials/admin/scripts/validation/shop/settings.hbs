@@ -1,0 +1,301 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#UpdateShopForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength:10
+                },
+                full_name:{
+                    required: true,
+                    minlength:6
+                },
+                phone:{
+                    required: true,
+                },
+                email:{
+                    required: true,
+                    email:true
+                },
+                address:{
+                    required: true,
+                }
+            },
+            messages: {
+               name: {
+                    required: "Nhập thông tin nhà cung cấp",
+                    min: "Họ và Tên phải nhiều hơn 10 ký tự"
+                },
+                full_name: {
+                    required: "Nhập thông tin người đại diện",
+                    min: "Họ và Tên phải nhiều hơn 6 ký tự"
+                },
+                phone: {
+                    required: "Nhập thông tin số điện thoại",
+                    regx: "Không đúng định dạng"
+                },
+                email: {
+                    required: "Nhập thông tin email",
+                    email: "Không đúng định dạng email"
+                },
+                address: {
+                    required: "Nhập thông tin địa chỉ"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#ConfigBanksForm').validate({
+            rules: {
+                code:{
+                    required: true
+                },
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                number:{
+                    required: true,
+                    minlength:6,
+                },
+                account:{
+                    required: true,
+                    minlength:6
+                },
+                branch:{
+                    required: true,
+                    minlength:6
+                },
+            },
+            messages: {
+                code: {
+                    required: "Nhập mã ngân hàng"
+                },
+                name: {
+                    required: "Nhập tên ngân hàng",
+                    minlength:"Tên ngân hàng lớn hơn 5 ký tự",
+                },
+                number: {
+                    required: "Nhập số tài khoản ngân hàng",
+                    minlength:"STK ngân hàng lớn hơn 6 ký tự",
+                },
+                account: {
+                    required: "Nhập tên tài khoản ngân hàng",
+                    minlength:"Tên tài khoản ngân hàng từ 6 ký tự",
+                },
+                branch: {
+                    required: "Nhập chi nhánh ngân hàng",
+                    minlength:"Chi nhánh ngân hàng từ 6 ký tự",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        $('#EditBanksForm').validate({
+            rules: {
+                code:{
+                    required: true
+                },
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                number:{
+                    required: true,
+                    minlength:6,
+                },
+                account:{
+                    required: true,
+                    minlength:6
+                },
+                branch:{
+                    required: true,
+                    minlength:6
+                },
+            },
+            messages: {
+                code: {
+                    required: "Nhập mã ngân hàng"
+                },
+                name: {
+                    required: "Nhập tên ngân hàng",
+                    minlength:"Tên ngân hàng lớn hơn 5 ký tự",
+                },
+                number: {
+                    required: "Nhập số tài khoản ngân hàng",
+                    minlength:"STK ngân hàng lớn hơn 6 ký tự",
+                },
+                account: {
+                    required: "Nhập tên tài khoản ngân hàng",
+                    minlength:"Tên tài khoản ngân hàng từ 6 ký tự",
+                },
+                branch: {
+                    required: "Nhập chi nhánh ngân hàng",
+                    minlength:"Chi nhánh ngân hàng từ 6 ký tự",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#shopAddressForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                },
+                province:{
+                    valueNotEquals:"-1",
+                },
+                district:{
+                    valueNotEquals:"-1",
+                },
+                wards:{
+                    valueNotEquals:"-1",
+                },
+                address: {
+                    required: true,
+                    minlength:10,
+                },
+                phone: {
+                    required: true,
+                },
+            },
+            messages: {
+                name: {
+                    required: "Tên người chuyển nhận hàng"
+                },
+                province: {
+                    valueNotEquals:"Lựa chọn Tỉnh/Thành phố",
+                },
+                district: {
+                    valueNotEquals:"Lựa chọn Quận/Huyện",
+                },
+                wards: {
+                    valueNotEquals:"Lựa chọn Phường/Xã",
+                },
+                address:{
+                    required: "Điền địa chỉ trạm vận chuyển",
+                    min: "Từ 10 ký tự"
+                },
+                phone:{
+                    required: "Điền số điện thoại"
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditAddressForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                },
+                province:{
+                    valueNotEquals:"-1",
+                },
+                district:{
+                    valueNotEquals:"-1",
+                },
+                wards:{
+                    valueNotEquals:"-1",
+                },
+                address: {
+                    required: true,
+                    minlength:10,
+                },
+                phone: {
+                    required: true,
+                },
+            },
+            messages: {
+                name: {
+                    required: "Tên người chuyển nhận hàng"
+                },
+                province: {
+                    valueNotEquals:"Lựa chọn Tỉnh/Thành phố",
+                },
+                district: {
+                    valueNotEquals:"Lựa chọn Quận/Huyện",
+                },
+                wards: {
+                    valueNotEquals:"Lựa chọn Phường/Xã",
+                },
+                address:{
+                    required: "Điền địa chỉ trạm vận chuyển",
+                    min: "Từ 10 ký tự"
+                },
+                phone:{
+                    required: "Điền số điện thoại"
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+
+
+
+    });
+</script>

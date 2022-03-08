@@ -1,0 +1,98 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Shop/Cửa hàng: {{data.shop.code}} ({{data.shop.name}}) </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Cấu hình thông tin shop/cửa hàng</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <form role="form" id="UpdateShopForm" method="POST" action="/shop/settings/information/update/{{data.shop.code}}?_csrf={{csrfToken}}"  enctype="multipart/form-data">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin Shop</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tên Shop</label>
+                                        <input type="text" class="form-control" placeholder="Tên nhà cung cấp" name="name" id="name" value="{{data.shop.name}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Người đại diện</label>
+                                        <input type="text" placeholder="Người đại diện" class="form-control" name="full_name" value="{{data.shop.full_name}}">
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Mã số thuế</label>
+                                        <input type="text" class="form-control" id="taxcode" placeholder="Mã số Thuế" name="taxcode" value="{{data.shop.taxcode}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Trụ sở</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address" value="{{data.shop.address}}">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    {{#if data.shop.images}}
+                                        <div class="form-group">
+                                            <img src="/upload/shop/logo/{{data.shop.code}}/{{data.shop.images}}" alt="{{data.shop.name}}" width="100px">
+                                        </div>
+                                    {{/if}}
+                                    <div class="form-group">
+                                        <label>Logo</label>
+                                        <input type="file" id="images" name="images" class="file-loading" accept="image/*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Điện thoại</label>
+                                        <input type="text" placeholder="Số điện thoại" class="form-control" name="phone" value="{{data.shop.phone}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Địa chỉ email" name="email" value="{{data.shop.email}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Trạng thái</label>
+                                        <select class="form-control select2bs4" name="status">
+                                            <option value="1" {{#ifvalue data.shop.status 1}} selected {{/ifvalue}}/>Hoạt động</option>
+                                            <option value="0" {{#ifvalue data.shop.status 0}} selected {{/ifvalue}}/>Tạm Khóa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->

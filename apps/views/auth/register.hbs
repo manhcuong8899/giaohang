@@ -1,0 +1,66 @@
+<div class="register-box">
+    <div class="register-logo">
+        <b>HỆ THỐNG QUẢN LÝ</b>
+    </div>
+    <div class="card">
+        <div class="card-body register-card-body">
+            <p class="login-box-msg">ĐĂNG KÝ QUẢN TRỊ</p>
+
+            <form action="/admin/register" method="post">
+                {{#if data.error }}
+                <div id="registerform" style="display: block;" class="alert alert-danger">
+                        <span>{{data.error}}</span>
+                </div>
+                {{/if}}
+
+                {{#if data.success }}
+                    <div id="registerform" style="display: block;" class="alert alert-success">
+                        <span>{{data.success}}</span>
+                    </div>
+                {{/if}}
+                <div class="input-group mb-3">
+                    <input type="text" name="full_name"  id="full_name" class="form-control" placeholder="Họ và Tên">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="repassword" class="form-control" placeholder="Xác nhận lại mật khẩu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" align="center">
+                    <!-- /.col -->
+                    <div class="col-12">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <a href="/admin/login" class="text-center">Đã có tài khoản</a>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
+</div>

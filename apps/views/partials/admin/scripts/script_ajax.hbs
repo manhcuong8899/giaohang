@@ -1,0 +1,98 @@
+<script>
+$('#province').change(function(){
+    var province = $('#province').val();
+    var url = '{{baseurl '/admin/config/ajax/province'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {province: province}
+    }).done(function(jsonData) {
+        var opt = '<option value="-1" selected>Lựa chọn Quận/Huyện</option>';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#district').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Quận/Huyện');
+    });
+});
+
+$('#district').change(function(){
+    var district = $('#district').val();
+    var url = '{{baseurl '/admin/config/ajax/district'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {district: district}
+    }).done(function(jsonData) {
+        var opt = '<option value="-1" selected>Lựa chọn Phường/Xã</option>';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#wards').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Phường/Xã');
+    });
+});
+
+$('#updated_province').change(function(){
+    var province = $('#updated_province').val();
+    var url = '{{baseurl '/admin/config/ajax/province'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {province: province}
+    }).done(function(jsonData) {
+        var opt = '';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#updated_district').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Quận/Huyện');
+    });
+});
+
+$('#updated_district').change(function(){
+    var district = $('#updated_district').val();
+    var url = '{{baseurl '/admin/config/ajax/district'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {district: district}
+    }).done(function(jsonData) {
+        var opt = '';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#updated_wards').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Phường/Xã');
+    });
+});
+
+</script>

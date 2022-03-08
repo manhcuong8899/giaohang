@@ -1,0 +1,159 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#UserForm').validate({
+            rules: {
+                full_name:{
+                    required: true,
+                    minlength:5
+                },
+                phone:{
+                    required: true,
+                },
+                email:{
+                    required: true,
+                    email:true
+                },
+                roles:{
+                    valueNotEquals:"-1",
+                },
+                branch_id:{
+                    valueNotEquals:"-1",
+                },
+                address:{
+                    required: true,
+                }
+            },
+            messages: {
+                full_name: {
+                    required: "Nhập thông tin Họ và Tên",
+                    min: "Họ và Tên phải nhiều hơn 5 ký tự"
+                },
+                phone: {
+                    required: "Nhập thông tin số điện thoại",
+                    regx: "Không đúng định dạng"
+                },
+                email: {
+                    required: "Nhập thông tin email",
+                    email: "Không đúng định dạng email"
+                },
+                roles: {
+                    valueNotEquals: "Lựa chọn quyền hạn"
+                },
+                branch_id: {
+                    valueNotEquals: "Lựa chọn đơn vị nhân sự"
+                },
+                address: {
+                    required: "Nhập thông tin địa chỉ"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditUserForm').validate({
+            rules: {
+                full_name:{
+                    required: true,
+                    minlength:5
+                },
+                phone:{
+                    required: true,
+                },
+                email:{
+                    required: true,
+                    email:true
+                },
+                roles:{
+                    valueNotEquals:"-1",
+                },
+                branch_id:{
+                    valueNotEquals:"-1",
+                },
+                address:{
+                    required: true,
+                }
+            },
+            messages: {
+                full_name: {
+                    required: "Nhập thông tin Họ và Tên",
+                    min: "Họ và Tên phải nhiều hơn 5 ký tự"
+                },
+                phone: {
+                    required: "Nhập thông tin số điện thoại",
+                    regx: "Không đúng định dạng"
+                },
+                email: {
+                    required: "Nhập thông tin email",
+                    email: "Không đúng định dạng email"
+                },
+                roles: {
+                    valueNotEquals: "Lựa chọn quyền hạn"
+                },
+                branch_id: {
+                    valueNotEquals: "Lựa chọn đơn vị nhân sự"
+                },
+                address: {
+                    required: "Nhập thông tin địa chỉ"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+
+        $('#SeachUserForm').validate({
+            rules: {
+                s_fullname:{
+                    minlength:2
+                }
+            },
+            messages: {
+                s_fullname: {
+                    min: "Họ và Tên phải nhiều hơn 2 ký tự"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+    });
+</script>

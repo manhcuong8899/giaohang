@@ -1,0 +1,303 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý phí mua hộ hàng hóa</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Phí mua hộ hàng hóa</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <form role="form" id="PricelistForm" method="POST" action="/admin/pricelist/orderfee">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm cước dịch vụ mua hộ</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Mã giá</label>
+                                        <input type="text" class="form-control" id="code" placeholder="Mã giá" name="code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tên giá dịch vụ</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Tên giá dịch vụ" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Loại phí</label>
+                                        <select class="form-control select2bs4" style="width: 100%;" name="type" id="type">
+                                            <option value="-1">Lựa chọn loại phí</option>
+                                            <option value="MH">Phí dịch vụ mua hộ</option>
+                                            <option value="KD">Phí kiểm đếm</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" style="display: none" id="totalorder">
+                                        <label>Giá trị đơn hàng (vnđ)</label>
+                                        <input type="number" class="form-control" placeholder="Giá trị đơn hàng" name="value">
+                                    </div>
+                                    <div class="form-group" style="display: none" id="percent">
+                                        <label>Phí dịch vụ</label>
+                                        <input type="number" class="form-control"  placeholder="Phí dịch vụ trên giá trị đơn hàng" name="fee" required>
+                                    </div>
+                                    <div class="form-group" style="display: none" id="amountcount">
+                                        <label>Số lượng kiểm đếm tối đa</label>
+                                        <input type="number" class="form-control" placeholder="Số lượng kiểm đếm tối đa trong gói" name="value">
+                                    </div>
+
+                                    <div class="form-group" style="display: none" id="pricecount">
+                                        <label>Mức giá đếm/sản phẩm</label>
+                                        <input type="number" class="form-control" placeholder="Mức giá đếm trên 1 sản phẩm" name="fee">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--- Danh sách Danh mục -->
+                <div class="col-9">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title" style="color: blue">Phí dịch vụ mua hộ</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Mã cước</th>
+                                                <th>Tên phí dịch vụ</th>
+                                                <th>Giá trị đơn hàng (vnđ)</th>
+                                                <th>Phí dịch vụ</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#forEach data.listMH}}
+                                            <tr>
+                                                <td>{{index}}</td>
+                                                <td>{{code}}</td>
+                                                <td>{{name}}</td>
+                                                <td>{{value}}</td>
+                                                <td style="color: red">{{formatvnd fee}}</td>
+                                                <td>
+                                                    <button  class="btn btn-primary btn-sm" onclick="edittransportfee('{{baseurl '/admin/pricelist/vieworderfee/'}}{{id}}')">
+                                                        <i class="fas fa-eye">
+                                                        </i>
+                                                        Sửa
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{name}}"  data-deleteurl="{{baseurl '/admin/pricelist/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                        <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            {{/forEach}}
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Mã cước</th>
+                                                <th>Tên phí dịch vụ</th>
+                                                <th>Giá trị đơn hàng (vnđ)</th>
+                                                <th>Phí dịch vụ</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title" style="color: blue">Phí kiểm đếm</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="all1" class="table table-bordered table-striped" style="width: 100%">
+                                        <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Mã cước</th>
+                                            <th>Tên phí kiểm đếm</th>
+                                            <th>Số lượng tối đa</th>
+                                            <th>Chi phí/sản phẩm (vnđ)</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#forEach data.listKD}}
+                                            <tr>
+                                                <td>{{index}}</td>
+                                                <td>{{code}}</td>
+                                                <td>{{name}}</td>
+                                                <td>{{value}}</td>
+                                                <td style="color: red">{{formatvnd fee}}</td>
+                                                <td>
+                                                    <button  class="btn btn-primary btn-sm" onclick="edittransportfee('{{baseurl '/admin/pricelist/vieworderfee/'}}{{id}}')">
+                                                        <i class="fas fa-eye">
+                                                        </i>
+                                                        Sửa
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{name}}"  data-deleteurl="{{baseurl '/admin/pricelist/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                        <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        {{/forEach}}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Mã cước</th>
+                                            <th>Tên phí kiểm đếm</th>
+                                            <th>Số lượng tối đa</th>
+                                            <th>Chi phí/sản phẩm (vnđ)</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <div class="modal fade" id="updatedpricelist">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông tin cấu hình cước phí</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="EditPricelistForm" method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Mã giá</label>
+                                    <input type="text" class="form-control" id="code" placeholder="Mã giá" name="code">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên giá dịch vụ</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Tên giá dịch vụ" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại phí</label>
+                                    <select class="form-control select2bs4" style="width: 100%;" name="type" id="update_type">
+                                        <option value="-1">Lựa chọn loại phí</option>
+                                        <option value="MH">Phí dịch vụ mua hộ</option>
+                                        <option value="KD">Phí kiểm đếm</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="display: none" id="update_totalorder">
+                                    <label>Giá trị đơn hàng (vnđ)</label>
+                                    <input type="number" class="form-control" placeholder="Giá trị đơn hàng" name="value">
+                                </div>
+                                <div class="form-group" style="display: none" id="update_percent">
+                                    <label>Phí dịch vụ</label>
+                                    <input type="number" class="form-control"  placeholder="Phí dịch vụ trên giá trị đơn hàng" name="fee" required>
+                                </div>
+                                <div class="form-group" style="display: none" id="update_amountcount">
+                                    <label>Số lượng kiểm đếm tối đa</label>
+                                    <input type="number" class="form-control" placeholder="Số lượng kiểm đếm tối đa trong gói" name="value">
+                                </div>
+
+                                <div class="form-group" style="display: none" id="update_pricecount">
+                                    <label>Mức giá đếm/sản phẩm</label>
+                                    <input type="number" class="form-control" placeholder="Mức giá đếm trên 1 sản phẩm" name="fee">
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <!-- /.row -->
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Lưu lại</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận cấu hình bảng giá</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Đồng ý xóa cấu hình bảng giá <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="delForm" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>

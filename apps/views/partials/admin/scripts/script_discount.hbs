@@ -1,0 +1,38 @@
+<script>
+    $('#type').change(function(){
+        var type = $('#type').val();
+        if(type==1)
+        {
+            $("#totalorder").css("display","block");
+            $("#amountcount").css("display","none");
+        }
+        if(type==2){
+            $("#totalorder").css("display","none");
+            $("#amountcount").css("display","block");
+        }
+        if(type==0)
+        {
+            $("#totalorder").css("display","none");
+            $("#amountcount").css("display","none");
+        }
+    });
+
+    function editdiscount(url){
+        $('#EditDiscountForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditDiscountForm').attr('action', url);
+                $('#EditDiscountForm [name="name"]').val(data.name);
+                $('#EditDiscountForm [name="value"]').val(data.value);
+                $('#EditDiscountForm [name="discount"]').val(data.discount);
+                $('#updateddiscount').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin Chiết khấu!');
+            }
+        });
+    }
+</script>

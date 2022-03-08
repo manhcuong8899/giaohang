@@ -1,0 +1,282 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Mã vận đơn:<b style="color: red">{{data.code}}</b> - <b style="color: blue">{{data.aorders.statusname}}</b></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Vận đơn</a></li>
+                    <li class="breadcrumb-item active">Chi tiết vận đơn</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông tin người nhận hàng</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="number" placeholder="Số điện thoại" value="{{data.aorders.phone}}" disabled class="form-control" name="phone">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tên Khách hàng</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{data.aorders.full_name}}" placeholder="Nhập Tên Khách hàng" name="full_name" id="full_name" disabled>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Số nhà/Ngõ/Ngách" value="{{data.aorders.address}}"name="address" id="address" disabled>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label>Tỉnh/Thành phố</label>
+                        <select class="form-control select2bs4" style="width: 100%;" id="province" name="province">
+                            <option>{{data.aorders.cityname}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label>Quận/Huyện</label>
+                        <select class="form-control select2bs4" id="district" style="width: 100%;" name="district">
+                            <option>{{data.aorders.districtname}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label>Phường/Xã</label>
+                        <select class="form-control select2bs4" id="wards" style="width: 100%;" name="wards">
+                            <option>{{data.aorders.wardsname}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStatus">Địa điểm Ship lấy hàng</label>
+                        <textarea cols="60" rows="3">{{data.addshop.address}} {{data.addshop.namewards}} - {{data.addshop.namedistrict}} - {{data.addshop.nameprovince}}</textarea>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-md-8">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông tin hàng hóa</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                        <table id="myTable" class="table product-list">
+                            <thead>
+                            <tr style="font-weight: bold">
+                                <td>Thứ tự</td>
+                                <td width="50%">Tên sản phẩm</td>
+                                <td>Số lượng</td>
+                                <td>Khối lượng</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#forEach data.listdetail}}
+                            <tr>
+                                <td>{{index}}</td>
+                                <td>
+                                    <input type="text" name="name[0]" class="form-control" value="{{name}}" disabled/>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" value="{{qty}}" disabled>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control add" value="{{weight}} kg"disabled >
+                                </td>
+                            </tr>
+                            {{/forEach}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="3" align="right"> Tổng khối lượng: <b style="color: red;font-size: 20px">{{data.Totalskg}} kg </b></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-md-6">
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-6 col-xs-12 col-sm-12">
+                            <p class="lead"><b>Ngày đặt hàng:</b> <b style="color: blue">{{formatdatetime data.aorders.created_at}}</b></p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th style="width:40%">Thu hộ:</th>
+                                        <td id="feeorder" style="font-weight: bold;color: black">{{formatvnd data.aorders.totalmoney}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phí thu hộ:</th>
+                                        <td id="feeorder" style="font-weight: bold;color: black">{{formatvnd data.aorders.feeorder}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phí vận chuyển:</th>
+                                        <td id="feetransport" style="font-weight: bold;color: black">{{formatvnd data.aorders.feeship}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tổng tiền thu khách hàng:</th>
+                                        <td id="totalorders" style="font-weight: bold;color: red;font-size: 24px">{{formatvnd data.Totals}}</td>
+                                    </tr>
+                                    </tbody></table>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-danger btn-sm" data-id="{{data.aorders.id}}" data-name="Hủy đơn vận đơn: {{data.aorders.code}}"  data-deleteurl="{{baseurl '/admin/delivery/cancel/'}}{{data.aorders.code}}" data-toggle="modal" data-target="#confirmDelete">
+                <i  class="fas fa-trash" data-toggle="tooltip" title="Hủy vận đơn"></i> Hủy vận đơn
+            </button>
+            <button  class="btn btn-primary btn-sm" onclick="addshipper('{{baseurl '/admin/delivery/addshipper/'}}{{data.aorders.code}}')">
+                <i class="fas fa-shipping-fast"></i> Giao Shipper
+            </button>
+
+            <button  class="btn btn-info btn-sm" onclick="addstatus('{{baseurl '/admin/delivery/addstatus/'}}{{data.aorders.code}}')">
+                <i class="fas fa-edit"></i> Chuyển trạng thái
+            </button>
+
+            <button type="button" class="btn btn-success btn-sm float-right" data-id="{{data.aorders.id}}" data-name="Xác nhận vận đơn: {{data.aorders.code}}"  data-deleteurl="{{baseurl '/admin/delivery/confirm/'}}{{data.aorders.code}}" data-toggle="modal" data-target="#confirmDelete">
+                <i  class="fas fa-check" data-toggle="tooltip" title="Xác nhận vận đơn"></i> Xác nhận vận đơn
+            </button>
+
+        </div>
+</section>
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Xác nhận chuyển trạng thái vận đơn</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p><b><span id="name"></span></b>?</p>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <form role="form" id="delForm" method="POST">
+                        <input type="hidden" name="_method" value="POST">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-danger">Đồng ý</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addshipper">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Gán Shipper nhận và giao hàng</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" id="AddShipperForm" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-check-circle"></i></span>
+                                </div>
+                                <select class="form-control select2" style="width: 100%;" name="shipper_id">
+                                    {{#forEach data.listshippers}}
+                                        <option value="{{id}}">{{full_name}} ({{phone}} - {{branchname}})</option>
+                                    {{/forEach}}
+                                </select>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div class="modal fade" id="addstatus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Chuyển trạng thái vận đơn</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" id="AddStatusForm" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-check-circle"></i></span>
+                                </div>
+                                <select class="form-control select2" style="width: 100%;" name="status">
+                                    {{#forEach data.status}}
+                                        <option value="{{id}}">{{name}}</option>
+                                    {{/forEach}}
+                                </select>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

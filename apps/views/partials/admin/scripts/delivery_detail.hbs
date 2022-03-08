@@ -1,0 +1,34 @@
+<script>
+    function addshipper(url){
+        $('#AddShipperForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data){
+                $('#AddShipperForm').attr('action', url);
+                $('#AddShipperForm [name="shipper_id"]').val(data.id).trigger("change");
+                $('#addshipper').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu nhân viên giao hàng!');
+            }
+        });
+    }
+    function addstatus(url){
+        $('#AddStatusForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data){
+                $('#AddStatusForm').attr('action', url);
+                $('#AddStatusForm [name="status"]').val(data.status).trigger("change");
+                $('#addstatus').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu trạng thái vận đơn!');
+            }
+        });
+    }
+</script>

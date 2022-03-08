@@ -1,0 +1,171 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý địa chỉ nhận hàng</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Địa chỉ nhận hàng</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <form role="form" id="updatePermissionsForm" method="POST" action="/shop/settings/address">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm địa chỉ</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <label>Tỉnh/Thành Phố</label>
+                                        <select widthclass="form-control" id="city" name="city" class="form-control">
+                                            <option >Hà Nội</option>
+                                            <option >Đà Nẵng</option>
+                                            <option >Hồ Chí Minh</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quận Huyện</label>
+                                        <select widthclass="form-control" id="district" name="district" class="form-control">
+                                            <option >Hoàng Mai</option>
+                                            <option >Đông Anh</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Địa chỉ Chi tiết" name="address" required>
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Google Map</label>
+                                        <textarea class="form-control" id="keywords" type="text" name="keywords" rows="3"/></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Thiết lập</label>
+                                        <select widthclass="form-control" id="status" name="status" class="form-control">
+                                            <option >Mặc định</option>
+                                            <option >Không mặc định</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--- Danh sách Danh mục -->
+                <div class="col-8">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Danh sách địa chỉ</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tỉnh/Thành Phố</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td> Đông Anh, Hà Nội
+                                               </td>
+                                                <td>P.702 Nơ 03, KĐT Pháp Vân, Hoàng Liệt, Hoàng Mai</td>
+                                                <td>
+                                                    <a href="/shop/settings/address" class="btn btn-primary btn-xs">
+                                                        <i class="fas fa-eye">
+                                                        </i>
+                                                        Xem
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmDelete">
+                                                        <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tỉnh/Thành Phố</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa địa chỉ nhận hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Đồng ý xóa địa chỉ nhận hàng <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="dellForm" method="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>

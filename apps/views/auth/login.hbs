@@ -1,0 +1,66 @@
+<div class="login-box">
+<div class="login-logo">
+   <b>HỆ THỐNG QUẢN LÝ</b>
+</div>
+<!-- /.login-logo -->
+<div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">Nhập thông tin đăng nhập</p>
+        <form action="/admin/login" method="post" id="loginform">
+            {{#if data.error }}
+                <div id="registerform" style="display: block;" class="alert alert-danger">
+                    <span>{{data.error}}</span>
+                </div>
+            {{/if}}
+
+            {{#if data.success }}
+                <div id="registerform" style="display: block;" class="alert alert-success">
+                    <span>{{data.success}}</span>
+                </div>
+            {{/if}}
+
+            <div class="input-group mb-3">
+                <input type="text" name="email" id="email" class="form-control" placeholder="Điền địa chỉ tài khoản">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Điền mật khẩu">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="icheck-primary">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">
+                            Lưu mật khẩu
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+        <!-- /.social-auth-links -->
+
+        <p class="mb-1">
+            <a href="/admin/forgot">Lấy lại mật khẩu</a>
+        </p>
+        <p class="mb-0">
+            <a href="/admin/register" class="text-center">Đăng ký tài khoản</a>
+        </p>
+    </div>
+    <!-- /.login-card-body -->
+</div>
+</div>

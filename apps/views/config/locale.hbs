@@ -1,0 +1,231 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý Vùng miền, Tỉnh/Thành phố</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Vùng miền, Tỉnh/Thành phố</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <form role="form" id="ConfigLocaleForm" method="POST" action="/admin/config/locale">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm khu vực</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Mã khu vực</label>
+                                        <input type="text" class="form-control" id="code" placeholder="Mã khu vực" name="code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tên khu vực</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Tên Khu vực. Ví dụ Hà Nội" name="name">
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <label>Lat (Google Map)</label>
+                                        <input type="number" class="form-control" id="lat" placeholder="Lat" name="lat">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Long (Google Map)</label>
+                                        <input type="number" class="form-control" id="long" placeholder="Long" name="long">
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label>Thuộc miền</label>
+                                        <select class="form-control select2bs4" style="width: 100%;" name="domain">
+                                            <option selected="selected" value="-1">Lựa chọn vùng miền</option>
+                                            <option value="TBB">Tây Bắc Bộ</option>
+                                            <option value="DBB">Đông Bắc Bộ</option>
+                                            <option value="DBSH">Đồng bằng sông hồng</option>
+                                            <option value="BTB">Bắc Trung Bộ</option>
+                                            <option value="NTB">Nam Trung Bộ</option>
+                                            <option value="TN">Tây Nguyên</option>
+                                            <option value="DNB">Đông Nam Bộ</option>
+                                            <option value="DBSCL">Đồng Bằng sông cửu long</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--- Danh sách Danh mục -->
+                <div class="col-9">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Danh sách Tỉnh/Thành phố</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Mã khu vực</th>
+                                                <th>Tên Tỉnh/Thành phố</th>
+                                                <th>Thuộc Vùng Miền</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#forEach data.city}}
+                                            <tr>
+                                                <td>{{index}}</td>
+                                                <td><a href="/admin/config/locale/{{code}}/district" >{{code}}</a></td>
+                                                <td><a href="/admin/config/locale/{{code}}/district" >{{name}}</a></td>
+                                                <td>{{domain_locale domain}}</td>
+                                                <td align="right">
+                                                    <button  class="btn btn-info btn-sm" onclick="editlocale('{{baseurl '/admin/config/locale/view/'}}{{code}}')">
+                                                        <i class="fas fa-edit">
+                                                        </i>
+                                                        Sửa
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="{{code}}" data-name="{{code}}"  data-deleteurl="{{baseurl '/admin/config/locale/delete/'}}{{code}}" data-toggle="modal" data-target="#confirmDelete">
+                                                        <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            {{/forEach}}
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Mã khu vực</th>
+                                                <th>Tên Tỉnh/Thành phố</th>
+                                                <th>Thuộc Vùng Miền</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <!--- Model Update--->
+    <div class="modal fade" id="updatedlocale">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật thông tin khu vực</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="EditLocaleForm" method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Mã khu vực</label>
+                                    <input type="text" class="form-control" id="code" placeholder="Mã khu vực" name="code">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên khu vực</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Tên Khu vực. Ví dụ Hà Nội" name="name">
+                                </div>
+                               <!-- <div class="form-group">
+                                    <label>Lat (Google Map)</label>
+                                    <input type="number" class="form-control" id="lat" placeholder="Lat" name="lat">
+                                </div>
+                                <div class="form-group">
+                                    <label>Long (Google Map)</label>
+                                    <input type="number" class="form-control" id="long" placeholder="Long" name="long">
+                                </div>-->
+                                <div class="form-group">
+                                    <label>Thuộc miền</label>
+                                    <select class="form-control select2bs4" style="width: 100%;" name="domain">
+                                        <option selected="selected" value="-1">Lựa chọn vùng miền</option>
+                                        <option value="TBB">Tây Bắc Bộ</option>
+                                        <option value="DBB">Đông Bắc Bộ</option>
+                                        <option value="DBSH">Đồng bằng sông hồng</option>
+                                        <option value="BTB">Bắc Trung Bộ</option>
+                                        <option value="NTB">Nam Trung Bộ</option>
+                                        <option value="TN">Tây Nguyên</option>
+                                        <option value="DNB">Đông Nam Bộ</option>
+                                        <option value="DBSCL">Đồng Bằng sông cửu long</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /.modal-dialog -->
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa thiết lập khu vực</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Đồng ý xóa thiết lập khu vực <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="delForm" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>

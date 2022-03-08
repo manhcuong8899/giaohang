@@ -1,0 +1,289 @@
+<div class="content-header">
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="card card-gray card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="../../dist/img/user4-128x128.jpg"
+                                 alt="User profile picture">
+                        </div>
+
+                        <h3 class="profile-username text-center">{{data.info.name}}</h3>
+
+                        <p class="text-muted text-center">Shop/Cửa hàng</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Mã Shop:</b> <a class="float-right" style="color: red">{{data.info.code}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Điện thoại:</b> <a class="float-right">{{data.info.phone}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Người đại diện:</b> <a class="float-right">{{data.info.full_name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- About Me Box -->
+                <div class="card card-gray">
+                    <div class="card-header">
+                        <h3 class="card-title">Thông tin xuất hóa đơn</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <strong><i class="fas fa-book mr-1"></i> Mã số thuế</strong>
+                        <p class="text-muted">
+                            {{data.info.taxcode}}
+                        </p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Trụ sở</strong>
+
+                        <p class="text-muted">  {{data.info.address}}</p>
+                        <hr>
+                        <strong><i class="fas fa-book mr-1"></i> Email nhận hóa đơn</strong>
+                        <p class="text-muted">
+                            {{data.info.email}}
+                        </p>
+                        <hr>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- About Me Box -->
+                <div class="card card-gray">
+                    <div class="card-header">
+                        <h3 class="card-title">Lịch đối soát</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.Left col -->
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>150</h3>
+
+                                <p>Sản phẩm</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion note-icon-orderedlist"></i>
+                            </div>
+                            <a href="{{baseurl '/admin/supplies/products/'}}{{data.info.id}}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>53</h3>
+
+                                <p>Đơn hàng</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{baseurl '/admin/supplies/orders/'}}{{data.info.id}}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{data.countuser}}</h3>
+
+                                <p>Tài khoản</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="{{baseurl '/admin/shops/users/'}}{{data.info.id}}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-6">
+                        <div class="col-lg-12 col-xs-12">
+                            <a class="btn-sm btn-danger" style="color: white" href="{{baseurl '/admin/rule/shop/'}}{{data.info.id}}"><i class="fa fa-eye"> Quy định</i></a>
+                            <a class="btn-sm btn-primary" style="color: white" href="{{baseurl '/admin/discount/shop/'}}{{data.info.id}}"><i class="fa fa-plus-circle"> Thiết lập chiết khấu</i></a>
+                            <a class="btn-sm btn-success" style="color: white" href="{{baseurl '/admin/pricelist/transportfee/shop/'}}{{data.info.id}}"><i class="fa fa-plus-circle"> Thiết lập phí vận chuyển</i></a>
+                            <a class="btn-sm btn-info" style="color: white" href="{{baseurl '/admin/pricelist/codfee/shop/'}}{{data.info.id}}"><i class="fa fa-plus-circle"> Thiết lập phí thu hộ</i></a>
+                        </div>
+                        <br>
+                    </div>
+                    <!-- ./col -->
+                </div>
+
+                <!-- Bang chiet khau -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b style="color: black"><a href="{{baseurl "/admin/discount/shop/"}}{{data.info.id}}"> Tỷ lệ chiết khấu</a></b>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table  class="table table-bordered table-striped" style="width: 100%">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên chiết khấu</th>
+                                        <th>Số lượng vận đơn/tháng</th>
+                                        <th>% chiết khấu</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#forEach data.discount}}
+                                    <tr>
+                                        <td>{{index}}</td>
+                                        <td>{{name}}</td>
+                                        <td>{{value}}</td>
+                                        <td style="color: red">{{discount}}</td>
+                                    </tr>
+                                    {{/forEach}}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- Bang Cuoc phi van chuyen -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b style="color: black"><a href="{{baseurl "/admin/pricelist/transportfee/shop/"}}{{data.info.id}}"> Cước phí vận chuyển</a></b>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="all2" class="table table-bordered table-striped" style="width: 100%">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Trọng lượng (gam)</th>
+                                        <th>Tên cước phí</th>
+                                        <th>Giá cước</th>
+                                        <th>Loại cước</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#forEach data.transportfee}}
+                                        <tr>
+                                            <td>{{index}}</td>
+                                            <td>{{value}}</td>
+                                            <td>{{name}}</td>
+                                            <td style="color: red">{{formatvnd fee}}</td>
+                                            <td>
+                                                {{#ifvalue type "NT"}}Nội Tỉnh {{/ifvalue}}
+                                                {{#ifvalue type "NM"}}Nội Miền {{/ifvalue}}
+                                                {{#ifvalue type "LM"}}Liên Miền {{/ifvalue}}
+                                            </td>
+                                        </tr>
+                                    {{/forEach}}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Trọng lượng (gam)</th>
+                                        <th>Tên cước phí</th>
+                                        <th>Giá cước</th>
+                                        <th>Loại cước</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- Bang Phi Thu ho-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b style="color: black"><a href="{{baseurl "/admin/pricelist/codfee/shop/"}}{{data.info.id}}"> Cước phí thu hộ</a></b>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="all3" class="table table-bordered table-striped" style="width: 100%">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên phí thu hộ</th>
+                                        <th>Giá trị đơn hàng (vnđ)</th>
+                                        <th>Phí thu hộ</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#forEach data.codfee}}
+                                        <tr>
+                                            <td>{{index}}</td>
+                                            <td>{{name}}</td>
+                                            <td>{{value}}</td>
+                                            <td style="color: red">{{feecod value fee}}</td>
+                                        </tr>
+                                    {{/forEach}}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên giá dịch vụ</th>
+                                        <th>Giá trị tính (vnđ)</th>
+                                        <th>Phí thu hộ</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+            </div>
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

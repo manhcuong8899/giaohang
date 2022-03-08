@@ -1,0 +1,40 @@
+<script>
+    $('#type').change(function(){
+        var type = $('#type').val();
+        if(type==1)
+        {
+            $("#totalorder").css("display","block");
+            $("#amountcount").css("display","none");
+        }
+        if(type==2){
+            $("#totalorder").css("display","none");
+            $("#amountcount").css("display","block");
+        }
+        if(type==0)
+        {
+            $("#totalorder").css("display","none");
+            $("#amountcount").css("display","none");
+        }
+    });
+
+    function editcategory(url){
+        $('#EditCategoryForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditCategoryForm').attr('action', url);
+                $('#EditCategoryForm [name="code"]').val(data.code);
+                $('#EditCategoryForm [name="name"]').val(data.name);
+                $('#EditCategoryForm [name="keywords"]').val(data.keywords);
+                $('#EditCategoryForm [name="description"]').val(data.description);
+                $('#EditCategoryForm [name="orders"]').val(data.orders);
+                $('#updatedcategory').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin danh mục!');
+            }
+        });
+    }
+</script>

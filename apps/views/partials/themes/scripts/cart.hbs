@@ -1,0 +1,28 @@
+<script type="text/javascript">
+$('#addcart').click(function(){
+    let qty = $('#quantity').val();
+    if(qty<1){$('.btn-qty').tooltip('show');}else{$('.btn-qty').tooltip('hide');}
+if(qty>0){
+    $('.select2').removeClass('error-form');
+    var url = '{{baseurl '/addcart'}}';
+    var sid =  '{{data.aPro.sid}}';
+    var pid =  '{{data.aPro.id}}';
+    let token  = $('#csrf').val();
+    /* Hàm Ajax xử lý đặt hàng online */
+    $.ajax({
+        headers: {"X-CSRF-Token": token},
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {pid:pid,sid:sid,qty:qty}
+    }).done(function(data){
+        location.reload();
+    }).fail(function(data) {
+        alert("Lỗi đặt giỏ hàng");
+    });
+    /*Kết thúc hàm Ajax xử lý đặt hàng online */
+}else{
+    $('.select2').addClass('error-form');
+}
+});
+</script>

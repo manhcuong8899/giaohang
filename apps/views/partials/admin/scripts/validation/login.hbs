@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#loginform').validate({
+            rules: {
+                email:{
+                    required: true,
+                },
+                password:{
+                    required:true,
+                    minlength:6
+                }
+            },
+            messages: {
+                email: {
+                    required: "Nhập thông tin tài khoản",
+                },
+                password:{
+                    required: "Nhập mật khẩu truy cập",
+                    minlength:"Mật khẩu ít nhất 6 ký tự"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>

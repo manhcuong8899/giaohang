@@ -1,0 +1,15 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 5000,
+    "domain": "http://172.16.10.101"
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "giaohang",
+    "user_db": "root",
+    "pass_db": ""
+  },
+  "salt": 10
+}

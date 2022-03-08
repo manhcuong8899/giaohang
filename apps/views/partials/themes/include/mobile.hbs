@@ -1,0 +1,124 @@
+<div class="off-canvas-overlay"></div>
+<div class="off-canvas-inner-content">
+    <div class="btn-close-off-canvas">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="off-canvas-inner">
+        <div class="search-box-offcanvas">
+            <form>
+                <input type="text" placeholder="Search product...">
+                <button class="search-btn"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <!-- mobile menu start -->
+        <div class="mobile-navigation">
+
+            <!-- mobile menu navigation start -->
+            <nav>
+                <ul class="mobile-menu">
+                    <li>
+                        <a href="/">
+                            <span class="menu-text"> Trang chủ</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="menu-text">Sản phẩm</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <div class="mega-menu dropdown-hover">
+                            <div class="menu-colum">
+                                <ul>
+                                    <li><span class="mega-menu-text">ĐẶC SẢN MIỀN BẮC</span></li>
+                                    {{#forEach data.cate_dsmb}}
+                                        <li><a href="/san-pham/dsmb/{{slug}}">{{name}}</a></li>
+                                    {{/forEach}}
+                                </ul>
+                            </div>
+                            <div class="menu-colum">
+                                <ul>
+                                    <li><span class="mega-menu-text">ĐẶC SẢN MIỀN NAM</span></li>
+                                    {{#forEach data.cate_dsmn}}
+                                        <li><a href="/san-pham/dsmb/{{slug}}">{{name}}</a></li>
+                                    {{/forEach}}
+                                </ul>
+                            </div>
+                            <div class="menu-colum">
+                                <ul>
+                                    <li><span class="mega-menu-text">ĐẶC SẢN TÂY NGUYÊN</span></li>
+                                    {{#forEach data.cate_dstn}}
+                                        <li><a href="/san-pham/dsmb/{{slug}}">{{name}}</a></li>
+                                    {{/forEach}}
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/thong-bao">
+                            <span class="menu-text"> Thông Báo</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/tin-tuc">
+                            <span class="menu-text"> Tin tức</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/lien-he">
+                            <span class="menu-text">Liên hệ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- mobile menu navigation end -->
+        </div>
+        <!-- mobile menu end -->
+        <div class="header-top-settings offcanvas-curreny-lang-support">
+            <!-- mobile menu navigation start -->
+            <nav>
+                <ul class="mobile-menu">
+                    <li class="menu-item-has-children"><a href="#">Trang thành viên</a>
+                        <ul class="dropdown">
+                            {{#if members}}
+                                <li class="minicart-wrap d-none d-lg-block">
+                                    <a href="/members" class="pageuser-btn toolbar-btn " title="Truy cập trang quản lý"> <i class="ion-person"></i></a>
+                                </li>
+                                <li class="minicart-wrap d-none d-lg-block">
+                                    <a href="/logout" class="pageuser-btn toolbar-btn" title="Thoát"> <i class="ion-log-out"></i></a>
+                                </li>
+                            {{else}}
+                                <li class="login-register-wrap d-none d-xl-flex">
+                                    <span><a href="/dang-nhap">Đăng nhập</a></span>
+                                    <span><a href="/dang-ky">Đăng ký</a></span>
+                                </li>
+                            {{/if}}
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- mobile menu navigation end -->
+        </div>
+        <!-- offcanvas widget area start -->
+        <div class="offcanvas-widget-area">
+            <div class="top-info-wrap text-left text-black">
+                <ul>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <a href="hoangmanhcuong.hust@gmail.com">0888.819.1138</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="off-canvas-widget-social">
+                <a title="Facebook-f" href="#"><i class="fa fa-facebook-f"></i></a>
+                <a title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
+                <a title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                <a title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
+                <a title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
+            </div>
+        </div>
+        <!-- offcanvas widget area end -->
+    </div>
+</div>

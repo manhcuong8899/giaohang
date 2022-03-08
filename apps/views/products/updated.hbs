@@ -1,0 +1,170 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                    <li class="breadcrumb-item active">Thông tin sản phẩm</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form role="form" id="ContentProductForm" method="post" action="/admin/products/updated/{{data.aPro.id}}?_csrf={{csrfToken}}" enctype="multipart/form-data">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title"><b>Thông tin hàng hóa</b></h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tên hàng hóa</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Tên sản phẩm" name="name" value="{{data.aPro.name}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Xuất xứ/Thương hiệu</label>
+                                            <input type="text" class="form-control" id="branch" placeholder="Xuất xứ/Thương hiệu" name="branch" value="{{data.aPro.branch}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Đơn vị tính</label>
+                                            <select class="form-control select2bs4" name="unit_id">
+                                                <option value="{{data.aPro.unit_id}}" selected/>{{data.aunit.code}}</option>
+                                                {{#forEach data.units}}
+                                                    <option value="{{id}}">{{code}}</option>
+                                                {{/forEach}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Danh mục hàng hóa</label>
+                                            <select class="form-control select2bs4" name="parent_cate" id="parent_cate">
+                                                <option value="DSMB" {{#ifvalue data.acates.code 'DSMB'}} selected{{/ifvalue}}>Đặc sản Miền Bắc</option>
+                                                <option value="DSMN" {{#ifvalue data.acates.code 'DSMN'}} selected{{/ifvalue}}>Đặc sản Miền Nam</option>
+                                                <option value="DSTN" {{#ifvalue data.acates.code 'DSTN'}} selected{{/ifvalue}}>Đặc sản Tây Nguyên</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control select2bs4" name="cate_id" id="cate_id">
+                                                <option value="{{data.acates.id}}" selected>{{data.acates.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                {{#if data.aPro.images}}
+                                    <div class="form-group">
+                                        <img src="/upload/products/{{data.aPro.slug}}/{{data.aPro.images}}" alt="{{data.aPro.name}}" width="100px">
+                                    </div>
+                                {{/if}}
+                                <label>Ảnh đại diện</label>
+                                <input type="file" id="images" name="images" class="file-loading" accept="image/*">
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="card card-primary card-outline card-tabs" style="width: 100%">
+                                <div class="card-header p-0 pt-1 border-bottom-0">
+                                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active"  data-toggle="pill" href="#shortproduct" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Mô tả tóm tắt</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"  data-toggle="pill" href="#longproduct" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Mô tả chi tiết sản phẩm</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"  data-toggle="pill" href="#inputimages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Ảnh đính kèm</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"  data-toggle="pill" href="#inputseo" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Thẻ Seo</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content" id="custom-tabs-four-tabContent">
+                                        <div class="tab-pane fade active show" id="shortproduct" role="tabpanel">
+                                            <textarea class="form-control" id="short" type="text" name="short" rows="5"/>{{data.aPro.short}}</textarea>
+                                        </div>
+                                        <div class="tab-pane fade" id="longproduct" role="tabpanel">
+                                            <textarea class="form-control" id="long" type="text" name="content" rows="5"/>{{data.aPro.content}}</textarea>
+                                        </div>
+                                        <div class="tab-pane fade" id="inputimages" role="tabpanel">
+                                            <div class="row" style="margin-left: auto">
+                                              {{#forEach data.viewimages}}
+                                                  <div class="col-md-2 col-sm-3 col-xs-3 thumb" id="{{file}}">
+                                                  <div class="close_images">
+                                                          <a href="#" onclick="ajax_dl_images('/upload/products/{{slug}}/views/{{file}}','{{file}}')">Xóa</a>
+                                                  </div>
+                                                      <a class="thumbnail">
+                                                          <img class="img-responsive" style="margin-bottom:40px;" width="150px" src="/upload/products/{{slug}}/views/{{file}}">
+                                                      </a>
+                                                  </div>
+                                              {{/forEach}}
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="file-loading">
+                                                    <input id="input-image" name="input-image" type="file" accept="image/*" multiple>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="inputseo" role="tabpanel">
+                                            <div class="form-group">
+                                                <label>Thẻ keywords</label>
+                                                <textarea class="form-control" id="keywords" type="text" name="keywords" rows="3"/>{{data.aPro.keywords}}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Thẻ description</label>
+                                                <textarea class="form-control" id="description" type="text" name="description" rows="3"/>{{data.aPro.description}}</textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select class="form-control select2bs4" name="status">
+                                            <option value="-1" selected/>Xác nhận trạng thái sản phẩm</option>
+                                            <option value="0"  {{#ifvalue data.aPro.status "0"}}selected{{/ifvalue}}>Chờ duyệt nhà cung cấp</option>
+                                            <option value="1" {{#ifvalue data.aPro.status "1"}}selected{{/ifvalue}}>Chờ duyệt Admin</option>
+                                            <option value="2" {{#ifvalue data.aPro.status "2"}}selected{{/ifvalue}}>Đã duyệt</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer" align="center">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Cập nhật</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

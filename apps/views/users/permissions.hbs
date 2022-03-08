@@ -1,0 +1,139 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Cấu hình quyền hạn tài khoản</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Cấu hình quyền hạn</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <form role="form" id="updatePermissionsForm" method="POST" action="admin/users/permissions/updated">
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped" style="width: 100%">
+                                <thead>
+                                <tr align="center">
+                                    <th>Quyền hạn</th>
+                                    <th>Supper Admin</th>
+                                    <th>Admin</th>
+                                    <th>Quản lý</th>
+                                    <th>Kinh doanh</th>
+                                    <th>Shipper</th>
+                                    <th>Kế toán</th>
+                                    <th>Kho</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Quản lý vận đơn</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý đơn hàng mua hộ</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý tài khoản</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý cấu hình</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý hàng hóa</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý khách hàng</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý cước phí</td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                    <td align="center"><input type="checkbox" class="minimal" name="roles[][]"/></td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <tr align="center">
+                                    <th>Quyền hạn</th>
+                                    <th>Supper Admin</th>
+                                    <th>Admin</th>
+                                    <th>Quản lý</th>
+                                    <th>Kinh doanh</th>
+                                    <th>Shipper</th>
+                                    <th>Kế toán</th>
+                                    <th>Kho</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                            <div class="form-group" align="center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu Lại</button>
+                            </div>
+                        </form>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->

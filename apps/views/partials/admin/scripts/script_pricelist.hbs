@@ -1,0 +1,72 @@
+<script>
+    $('#type').change(function(){
+        var type = $('#type').val();
+        var update_type = $('#update_type').val();
+        if(type=='MH')
+        {
+            $("#totalorder").css("display","block");
+            $("#percent").css("display","block");
+            $("#amountcount").css("display","none");
+            $("#pricecount").css("display","none");
+        }
+        if(type=='KD'){
+            $("#totalorder").css("display","none");
+            $("#percent").css("display","none");
+            $("#amountcount").css("display","block");
+            $("#pricecount").css("display","block");
+        }
+        if(type==-1)
+        {
+            $("#totalorder").css("display","none");
+            $("#percent").css("display","none");
+            $("#amountcount").css("display","none");
+            $("#pricecount").css("display","none");
+        }
+    });
+
+    $('#update_type').change(function(){
+        var update_type = $('#update_type').val();
+        if(update_type=='MH')
+        {
+            $("#update_totalorder").css("display","block");
+            $("#update_percent").css("display","block");
+            $("#update_amountcount").css("display","none");
+            $("#update_pricecount").css("display","none");
+        }
+        if(update_type=='KD'){
+            $("#update_totalorder").css("display","none");
+            $("#update_percent").css("display","none");
+            $("#update_amountcount").css("display","block");
+            $("#update_pricecount").css("display","block");
+        }
+        if(update_type==-1)
+        {
+            $("#update_totalorder").css("display","none");
+            $("#pdate_percent").css("display","none");
+            $("#pdate_amountcount").css("display","none");
+            $("#pdate_pricecount").css("display","none");
+        }
+    });
+    function edittransportfee(url){
+        $('#EditPricelistForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditPricelistForm').attr('action', url);
+                $('#EditPricelistForm [name="code"]').val(data.code);
+                $('#EditPricelistForm [name="name"]').val(data.name);
+                $('#EditPricelistForm [name="value"]').val(data.value);
+                $('#EditPricelistForm [name="fee"]').val(data.fee);
+                $('#EditPricelistForm [name="type"]').val(data.type).trigger("change");
+                $('#updatedpricelist').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin Bảng giá!');
+            }
+        });
+    }
+
+
+</script>

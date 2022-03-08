@@ -1,0 +1,223 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Danh sách sản phẩm đăng bán</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.card -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên hàng hóa</th>
+                                    <th>Giá bán</th>
+                                    <th>Số lượng</th>
+                                    <th>Nhà cung cấp</th>
+                                    <th>Danh mục</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#forEach data.products}}
+                                <tr>
+                                    <td>{{index}}</td>
+                                    <td><a href="/admin/products/view/{{pid}}" target="_blank"> {{name}}</a> </td>
+                                    <td style="color: red">{{formatvnd price}}</td>
+                                    <td>{{amount}}</td>
+                                    <td> <a href="/admin/products/selling/supply/{{supply_id}}" target="_blank"> {{namesupply}}</a> </td>
+                                    <td>{{namecate}}</td>
+                                    <td>
+                                        {{#ifvalue status "0"}}Chưa duyệt {{/ifvalue}}
+                                        {{#ifvalue status "1"}}Đã duyệt {{/ifvalue}}
+                                        {{#ifvalue status "2"}}Đăng bán {{/ifvalue}}
+
+                                    </td>
+                                </tr>
+                                {{/forEach}}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên hàng hóa</th>
+                                    <th>Giá bán</th>
+                                    <th>Số lượng</th>
+                                    <th>Nhà cung cấp</th>
+                                    <th>Danh mục</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <div class="modal fade" id="createdselling">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông tin sản phẩm đăng bán</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="SellingForm" method="post" action="/admin/products/selling/supply/{{data.supplyid}}">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Gán thông tin sản phẩm</label>
+                                    <select class="form-control select2bs4" name="p_id" id="p2_id">
+                                        <option value="-1" selected>Lựa chọn thông tin sản phẩm</option>
+                                        {{#forEach data.listproducts}}
+                                            <option value="{{id}}">{{name}}</option>
+                                        {{/forEach}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Giá bán</label>
+                                    <input type="number" class="form-control" id="price" placeholder="Giá bán sản phẩm" name="price">
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input type="text" class="form-control" id="amount" placeholder="Số lượng đăng bán" name="amount">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên nhà sản xuất</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Tên nhà sản xuất" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ nhà sản xuất</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Địa chỉ nhà sản xuất" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label>Điện thoại nhà sản xuất</label>
+                                    <input type="number" class="form-control" id="phone" placeholder="Điện thoại nhà sản xuất" name="phone">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Lưu lại</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+
+    <div class="modal fade" id="updatedselling">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông tin sản phẩm đăng bán</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="EditSellingForm" method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Gán thông tin sản phẩm</label>
+                                    <select class="form-control select2bs4" name="p_id" id="p_id">
+                                        <option value="-1" selected>Lựa chọn thông tin sản phẩm</option>
+                                        {{#forEach data.listproducts}}
+                                            <option value="{{id}}">{{name}}</option>
+                                        {{/forEach}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Giá bán</label>
+                                    <input type="number" class="form-control" id="price" placeholder="Giá bán sản phẩm" name="price">
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input type="text" class="form-control" id="amount" placeholder="Số lượng đăng bán" name="amount">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên nhà sản xuất</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Tên nhà sản xuất" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ nhà sản xuất</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Địa chỉ nhà sản xuất" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label>Điện thoại nhà sản xuất</label>
+                                    <input type="number" class="form-control" id="phone" placeholder="Điện thoại nhà sản xuất" name="phone">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Lưu lại</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+    <!-- /.modal -->
+    <!---- Modal Xác nhận xóa-->
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa hàng hóa</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Đồng ý xóa hàng hóa <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="delForm" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>
+

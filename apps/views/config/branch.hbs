@@ -1,0 +1,255 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6 col-xs-12">
+                    <h1>Quản lý thông tin trạm vận chuyển</h1>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Thông tin trạm vận chuyển</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <form role="form" id="configBranchForm" method="POST" action="/admin/config/branch">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm trạm vận chuyển</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tên trạm vận chuyển</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Tên trạm vận chuyển" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tỉnh/Thành phố</label>
+                                        <select class="form-control select2bs4" style="width: 100%;" id="province" name="province">
+                                            <option value="-1">Lựa chọn tỉnh Thành phố</option>
+                                            {{#forEach data.province}}
+                                            <option value="{{code}}">{{name}}</option>
+                                                {{/forEach}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quận/Huyện</label>
+                                        <select class="form-control select2bs4" id="district" style="width: 100%;" name="district">
+                                            <option value="-1">Lựa chọn Quận/Huyện</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phường/Xã</label>
+                                        <select class="form-control select2bs4" id="wards" style="width: 100%;" name="wards">
+                                            <option value="-1">Lựa chọn Phường/Xã</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input type="number" class="form-control" id="phone" placeholder="Điện thoại" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Hotline</label>
+                                        <input type="hotline" class="form-control" id="phone" placeholder="Hỗ trợ trực tiếp" name="hotline">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Địa chỉ trạm vận chuyển" name="address">
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Google Map</label>
+                                        <textarea class="form-control" id="googlemap" type="text" name="googlemap" rows="3" placeholder="Nhúng Google Map"/></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--- Danh sách Danh mục -->
+                <div class="col-9 col-xs-12">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Danh sách trạm vận chuyển</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên trạm</th>
+                                                <th>Tỉnh/Thành phố</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#forEach data.listbranch}}
+                                                <tr>
+                                                    <td>{{index}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{province}}</td>
+                                                    <td>{{address}}</td>
+                                                    <td align="right">
+                                                        <button  class="btn btn-info btn-sm" onclick="editbranch('{{baseurl '/admin/config/branch/view/'}}{{id}}')">
+                                                            <i class="fas fa-edit">
+                                                            </i>
+                                                            Sửa
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{name}}"  data-deleteurl="{{baseurl '/admin/config/branch/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            {{/forEach}}
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên trạm</th>
+                                                <th>Tỉnh/Thành phố</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <div class="modal fade" id="updatedbranch">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật thông tin Trạm vận chuyển</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="EditBranchForm" method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tên trạm vận chuyển</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Tên trạm vận chuyển" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tỉnh/Thành phố</label>
+                                    <select class="form-control select2bs4" style="width: 100%;" id="updated_province" name="province">
+                                        <option value="-1">Lựa chọn tỉnh Thành phố</option>
+                                        {{#forEach data.province}}
+                                            <option value="{{code}}">{{name}}</option>
+                                        {{/forEach}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Quận/Huyện</label>
+                                    <select class="form-control select2bs4" id="updated_district" style="width: 100%;" name="district">
+                                        <option value="-1">Lựa chọn Quận/Huyện</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phường/Xã</label>
+                                    <select class="form-control select2bs4" id="updated_wards" style="width: 100%;" name="wards">
+                                        <option value="-1">Lựa chọn Phường/Xã</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <input type="number" class="form-control" id="phone" placeholder="Điện thoại" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label>Hotline</label>
+                                    <input type="hotline" class="form-control" id="phone" placeholder="Hỗ trợ trực tiếp" name="hotline">
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Địa chỉ trạm vận chuyển" name="address">
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Google Map</label>
+                                    <textarea class="form-control" id="googlemap" type="text" name="googlemap" rows="3" placeholder="Nhúng Google Map"/></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /.modal-dialog -->
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa thiết lập Trạm vận chuyển</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Đồng ý xóa thiết lập Trạm vận chuyển <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="delForm" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>

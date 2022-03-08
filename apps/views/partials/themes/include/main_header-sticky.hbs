@@ -1,0 +1,113 @@
+<div class="container container-default custom-area">
+    <div class="row">
+        <div class="col-lg-12 col-custom">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-xl-2 col-sm-6 col-6 col-custom">
+                    <div class="header-logo d-flex align-items-center">
+                        <a href="/">
+                            <img class="img-full" src="/admin/assets/images/logo/logo.png" alt="Đặc sản ba miền">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-xl-7 position-static d-none d-lg-block col-custom">
+                    <nav class="main-nav d-flex justify-content-center">
+                        <ul class="nav">
+                            <li>
+                                <a href="/">
+                                    <span class="menu-text"> Trang chủ</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="menu-text">Sản phẩm</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <div class="mega-menu dropdown-hover">
+                                    <div class="menu-colum">
+                                        <ul>
+                                            <li><span class="mega-menu-text">ĐẶC SẢN MIỀN BẮC</span></li>
+                                            {{#forEach data.cate_dsmb}}
+                                                <li><a href="/san-pham/dsmb/{{slug}}">{{name}}</a></li>
+                                            {{/forEach}}
+
+                                        </ul>
+                                    </div>
+                                    <div class="menu-colum">
+                                        <ul>
+                                            <li><span class="mega-menu-text">ĐẶC SẢN MIỀN NAM</span></li>
+                                            {{#forEach data.cate_dsmn}}
+                                                <li><a href="/san-pham/dsmn/{{slug}}">{{name}}</a></li>
+                                            {{/forEach}}
+                                        </ul>
+                                    </div>
+                                    <div class="menu-colum">
+                                        <ul>
+                                            <li><span class="mega-menu-text">ĐẶC SẢN TÂY NGUYÊN</span></li>
+                                            {{#forEach data.cate_dstn}}
+                                                <li><a href="/san-pham/dstn/{{slug}}">{{name}}</a></li>
+                                            {{/forEach}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/thong-bao">
+                                    <span class="menu-text"> Thông Báo</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tin-tuc">
+                                    <span class="menu-text"> Tin tức</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/lien-he">
+                                    <span class="menu-text">Liên hệ</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-2 col-xl-3 col-sm-6 col-6 col-custom">
+                    <div class="header-right-area main-nav">
+                        <ul class="nav">
+                            {{#if members}}
+                                <li class="minicart-wrap d-none d-lg-block">
+                                    <a href="/members/dashboard" class="pageuser-btn toolbar-btn " title="Truy cập trang thành viên"> <i class="ion-person"></i></a>
+                                </li>
+                                <li class="minicart-wrap d-none d-lg-block">
+                                    <a href="/logout" class="pageuser-btn toolbar-btn" title="Thoát"> <i class="ion-log-out"></i></a>
+                                </li>
+                            {{else}}
+                                <li class="login-register-wrap d-none d-xl-flex">
+                                    <span><a href="/dang-nhap">Đăng nhập</a></span>
+                                    <span><a href="/dang-ky">Đăng ký</a></span>
+                                </li>
+                            {{/if}}
+                            <li class="minicart-wrap">
+                                <a href="/cart" class="minicart-btn toolbar-btn">
+                                    <i class="ion-bag"></i>
+                                    <span class="cart-item_count">
+                                        {{#if cart}}
+                                        {{cart.length}}
+                                    {{else}}
+                                        0
+                                    {{/if}}
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="mobile-menu-btn d-lg-none">
+                                <a class="off-canvas-btn" href="#">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

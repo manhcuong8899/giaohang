@@ -1,0 +1,128 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#CategoryForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength: 3,
+                },
+                order:{
+                    required: true,
+                },
+                type:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập tên danh mục",
+                    minlength: "Lớn hơn 3 ký tự"
+                },
+                order: {
+                    required: "Nhập thứ tự danh mục"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditCategoryForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength: 3,
+                },
+                order:{
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập tên danh mục",
+                    minlength: "Lớn hơn 6 ký tự"
+                },
+                order: {
+                    required: "Nhập thứ tự danh mục"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        $('#ImagesForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength: 5,
+                },
+                link:{
+                    required: true,
+                    minlength: 10,
+                },
+                orders:{
+                    required: true,
+                },
+                type:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập tiêu đề hình ảnh",
+                    minlength: "Lớn hơn 5 ký tự"
+                },
+                link: {
+                    required: "Nhập link liên kết hình ảnh",
+                    minlength: "Lớn hơn 10 ký tự"
+                },
+                orders: {
+                    required: "Nhập thứ tự hình ảnh"
+                },
+                type:{
+                    valueNotEquals:"Lựa chọn chủ đề hình ảnh",
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+    });
+</script>

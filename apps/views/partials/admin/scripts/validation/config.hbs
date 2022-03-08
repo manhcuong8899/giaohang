@@ -1,0 +1,498 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#ConfigCostForm').validate({
+            rules: {
+                insurrance:{
+                    required: true,
+                },
+                bank:{
+                    required: true,
+                },
+                changeaddress:{
+                    required: true,
+                },
+                returns:{
+                    required: true,
+                }
+            },
+            messages: {
+                insurrance: {
+                    required: "Nhập phí bảo hiểm"
+                },
+                bank: {
+                    required: "Nhập phí chuyển khoản"
+                },
+                changeaddress: {
+                    required: "Nhập phí đổi địa chỉ"
+                },
+                returns:{
+                    required: "Nhập phí đổi trả hàng"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditDiscountForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                },
+                value:{
+                    required: true,
+                },
+                discount:{
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập thông tin tên chiết khấu"
+                },
+                value: {
+                    required: "Nhập giá trị tính cước chiết khấu"
+                },
+                discount: {
+                    required: "Nhập giá trị cước chiết khấu"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#ConfigUnitsForm').validate({
+            rules: {
+                code:{
+                    required: true
+                }
+            },
+            messages: {
+                code: {
+                    required: "Nhập đơn vị"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditUnitsForm').validate({
+            rules: {
+                code:{
+                    required: true
+                }
+            },
+            messages: {
+                code: {
+                    required: "Nhập đơn vị"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#ConfigBanksForm').validate({
+            rules: {
+                code:{
+                    required: true
+                },
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                number:{
+                    required: true,
+                    minlength:6,
+                },
+                account:{
+                    required: true,
+                    minlength:6
+                },
+                branch:{
+                    required: true,
+                    minlength:6
+                },
+            },
+            messages: {
+                code: {
+                    required: "Nhập mã ngân hàng"
+                },
+                name: {
+                    required: "Nhập tên ngân hàng",
+                    minlength:"Tên ngân hàng lớn hơn 5 ký tự",
+                },
+                number: {
+                    required: "Nhập số tài khoản ngân hàng",
+                    minlength:"STK ngân hàng lớn hơn 6 ký tự",
+                },
+                account: {
+                    required: "Nhập tên tài khoản ngân hàng",
+                    minlength:"Tên tài khoản ngân hàng từ 6 ký tự",
+                },
+                branch: {
+                    required: "Nhập chi nhánh ngân hàng",
+                    minlength:"Chi nhánh ngân hàng từ 6 ký tự",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        $('#EditBanksForm').validate({
+            rules: {
+                code:{
+                    required: true
+                },
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                number:{
+                    required: true,
+                    minlength:6,
+                },
+                account:{
+                    required: true,
+                    minlength:6
+                },
+                branch:{
+                    required: true,
+                    minlength:6
+                },
+            },
+            messages: {
+                code: {
+                    required: "Nhập mã ngân hàng"
+                },
+                name: {
+                    required: "Nhập tên ngân hàng",
+                    minlength:"Tên ngân hàng lớn hơn 5 ký tự",
+                },
+                number: {
+                    required: "Nhập số tài khoản ngân hàng",
+                    minlength:"STK ngân hàng lớn hơn 6 ký tự",
+                },
+                account: {
+                    required: "Nhập tên tài khoản ngân hàng",
+                    minlength:"Tên tài khoản ngân hàng từ 6 ký tự",
+                },
+                branch: {
+                    required: "Nhập chi nhánh ngân hàng",
+                    minlength:"Chi nhánh ngân hàng từ 6 ký tự",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#ConfigLocaleForm').validate({
+            rules: {
+                code:{
+                    required: true
+                },
+                name:{
+                    required: true,
+                    minlength:4
+                },
+                domain:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                code: {
+                    required: "Mã khu vực"
+                },
+                name: {
+                    required: "Nhập tên khu vực",
+                    minlength:"Tên ngân hàng lớn hơn 4 ký tự",
+                },
+                domain: {
+                    valueNotEquals:"Lựa chọn vùng miền",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditLocaleForm').validate({
+            rules: {
+                code:{
+                    required: true
+                },
+                name:{
+                    required: true,
+                    minlength:4
+                },
+                domain:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                code: {
+                    required: "Mã khu vực"
+                },
+                name: {
+                    required: "Nhập tên khu vực",
+                    minlength:"Tên ngân hàng lớn hơn 4 ký tự",
+                },
+                domain: {
+                    valueNotEquals:"Lựa chọn vùng miền",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#ConfigTimeForm').validate({
+            rules: {
+                name:{
+                    required: true
+                },
+                val_from:{
+                    required: true,
+                    min:1
+                },
+                val_to:{
+                    required: true,
+                    min:2,
+                    max:7
+                },
+                type: {
+                    valueNotEquals:"-1",
+                },
+            },
+            messages: {
+                name: {
+                    required: "Tên thời gian"
+                },
+                val_from:{
+                   required: "Thời giam giao hàng sớm nhất",
+                   min: "Từ 1 ngày"
+               },
+                val_to:{
+                    required: "Tên thời gian",
+                    min:"Từ 2 ngày",
+                    max:"Không quá 7 ngày"
+                },
+                type: {
+                    valueNotEquals:"Lựa chọn áp dụng",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        $('#EditTimeForm').validate({
+            rules: {
+                name:{
+                    required: true
+                },
+                val_from:{
+                    required: true,
+                    min:1
+                },
+                val_to:{
+                    required: true,
+                    min:2,
+                    max:7
+                },
+                type: {
+                    valueNotEquals:"-1",
+                },
+            },
+            messages: {
+                name: {
+                    required: "Tên thời gian"
+                },
+                val_from:{
+                    required: "Thời giam giao hàng sớm nhất",
+                    min: "Từ 1 ngày"
+                },
+                val_to:{
+                    required: "Tên thời gian",
+                    min:"Từ 2 ngày",
+                    max:"Không quá 7 ngày"
+                },
+                type: {
+                    valueNotEquals:"Lựa chọn áp dụng",
+                },
+
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        $('#configBranchForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                },
+                province:{
+                    valueNotEquals:"-1",
+                },
+                district:{
+                    valueNotEquals:"-1",
+                },
+                wards:{
+                    valueNotEquals:"-1",
+                },
+                address: {
+                    required: true,
+                    minlength:10,
+                },
+                phone: {
+                    required: true,
+                },
+                hotline: {
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Tên Trạm vận chuyển"
+                },
+                province: {
+                    valueNotEquals:"Lựa chọn Tỉnh/Thành phố",
+                },
+                district: {
+                    valueNotEquals:"Lựa chọn Quận/Huyện",
+                },
+                wards: {
+                    valueNotEquals:"Lựa chọn Phường/Xã",
+                },
+                address:{
+                    required: "Điền địa chỉ trạm vận chuyển",
+                    min: "Từ 10 ký tự"
+                },
+                phone:{
+                    required: "Điền số điện thoại"
+                },
+                hotline:{
+                    required: "Điền số Hotline"
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>

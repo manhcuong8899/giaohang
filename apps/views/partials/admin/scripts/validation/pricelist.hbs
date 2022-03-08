@@ -1,0 +1,116 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#PricelistForm').validate({
+            rules: {
+                code:{
+                    required: true,
+                    minlength:5
+                },
+                name:{
+                    required: true,
+                },
+                value:{
+                    required: true,
+                },
+                fee:{
+                    required: true,
+                },
+                type:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                code: {
+                    required: "Nhập mã phí",
+                    min: "Mã cước phí phải nhiều hơn 5 ký tự"
+                },
+                name: {
+                    required: "Nhập thông tin tên phí"
+                },
+                value: {
+                    required: "Nhập giá trị tính cước phí"
+                },
+                fee: {
+                    required: "Nhập giá trị cước phí"
+                },
+                type: {
+                    valueNotEquals: "Chưa chọn loại cước phí"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditPricelistForm').validate({
+            rules: {
+                code:{
+                    required: true,
+                    minlength:5
+                },
+                name:{
+                    required: true,
+                },
+                value:{
+                    required: true,
+                },
+                fee:{
+                    required: true,
+                },
+                type:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                code: {
+                    required: "Nhập mã phí",
+                    min: "Mã cước phí phải nhiều hơn 5 ký tự"
+                },
+                name: {
+                    required: "Nhập thông tin tên phí"
+                },
+                value: {
+                    required: "Nhập giá trị tính cước phí"
+                },
+                fee: {
+                    required: "Nhập giá trị cước phí"
+                },
+                type: {
+                    valueNotEquals: "Chưa chọn loại cước phí"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+
+    });
+</script>

@@ -1,0 +1,46 @@
+<script>
+    function editshops(url){
+        $('#EditShopForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditShopForm').attr('action', url);
+                $('#EditShopForm [name="name"]').val(data.name);
+                $('#EditShopForm [name="full_name"]').val(data.full_name);
+                $('#EditShopForm [name="phone"]').val(data.phone);
+                $('#EditShopForm [name="email"]').val(data.email);
+                $('#EditShopForm [name="taxcode"]').val(data.taxcode);
+                $('#EditShopForm [name="address"]').val(data.address);
+                $('#EditShopForm [name="status"]').val(data.status);
+                $('#updatedshop').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin Shop!');
+            }
+        });
+    }
+    function editbranch(url){
+        $('#EditAddressForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (address) {
+                $('#EditAddressForm').attr('action', url);
+                $('#EditAddressForm [name="name"]').val(address.name);
+                $('#EditAddressForm [name="phone"]').val(address.phone);
+                $('#EditAddressForm [name="address"]').val(address.address);
+                $('#EditAddressForm [name="googlemap"]').val(address.googlemap);
+                $('#EditAddressForm [name="province"]').val(address.province).trigger("change");
+                $('#EditAddressForm [name="district"]').append( '<option  selected value="'+address.district+'">'+address.namedistrict+'</option>' );
+                $('#EditAddressForm [name="wards"]').append( '<option  selected value="'+address.wards+'">'+address.namewards+'</option>' );
+                $('#updatedbranch').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin địa chỉ lấy hàng');
+            }
+        });
+    }
+</script>

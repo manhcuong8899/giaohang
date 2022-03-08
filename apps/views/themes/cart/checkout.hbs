@@ -1,0 +1,161 @@
+<div class="breadcrumbs-area position-relative" style="background: #f6f6f6 url('admin/assets/images/bg/1-1.jpg') no-repeat scroll center center/cover; padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="breadcrumb-content position-relative section-content">
+                        <h3 class="title-3">XÁC NHẬN THANH TOÁN</h3>
+                        <ul>
+                            <li><a href="#">Xác nhận thanh toán</a></li>
+                            <li>Hóa đơn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Checkout Area Start Here -->
+    <div class="checkout-area">
+        <div class="container container-default-2 custom-container">
+            <form action="/checkout" method="post" id="myform">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                        <div class="checkbox-form">
+                            <h3>THÔNG TIN ĐẶT HÀNG</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="myniceselect country-select clearfix">
+                                        <label>Tỉnh/Thành Phố <span class="required redform">*</span></label>
+                                        <select class="form-control select2-dropdown" name="city" id="city">
+                                           {{#forEach data.city}}
+                                               <option value="{{code}}">{{name}}</option>
+                                           {{/forEach}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Họ và tên <span class="required redform">*</span></label>
+                                        <input placeholder="Nhập Họ và Tên" type="text" value="{{members.full_name}}" name="full_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Địa chỉ<span class="required redform">*</span></label>
+                                        <input placeholder="Địa chỉ" type="text" value="{{members.address}}" name="address" id="address">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Điện thoại<span class="required redform">*</span></label>
+                                        <input placeholder="Điện thoại" type="text" value="{{members.phone}}" name="phone" id="phone">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Email<span class="required redform">*</span></label>
+                                        <input placeholder=" Địa chỉ email" type="email" value="{{members.email}}" name="email" id="email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="your-order">
+                        <h3>HÓA ĐƠN</h3>
+                        <div class="your-order-table table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="cart-product-name">Sản phẩm</th>
+                                    <th class="cart-product-total">Thành tiền</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                              <!----- List san pham trong gio hang-->
+                                {{#forEach cart}}
+                                    <tr class="cart_item">
+                                        <td class="cart-product-name"> {{name}}<strong class="product-quantity">
+                                            × {{qty}}</strong></td>
+                                        <td class="cart-product-total text-center"><span class="amount">{{formatvnd totals}}</span></td>
+                                    </tr>
+                                {{/forEach}}
+
+                            <!----- ----->
+                                </tbody>
+                                <tfoot>
+                                <tr class="order-total">
+                                    <th>Tổng thanh toán <span style="font-size: 12px">(Chưa bao gồm VAT)</span></th>
+                                    <td class="text-center"><strong><span class="amount" style="color: red">{{formatvnd data.total}}</span></strong></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-accordion">
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="#payment-1">
+                                            <h5 class="panel-title mb-2">
+                                                <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                   Hình thức thanh toán
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                            <div class="card-body mb-2 mt-2">
+                                                <p> Quý khách có thể thực hiện thanh toán bằng 02 hình thức sau:
+                                                    <br>1. Tiền mặt: Thanh toán trực tiếp khi giao hàng
+                                                    <br>2. Thanh toán chuyển khoản trước khi nhận hàng hoặc khi giao hàng được nhân viên của chúng tôi xác nhận</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="#payment-2">
+                                            <h5 class="panel-title mb-2">
+                                                <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                  Hướng dẫn chuyển khoản
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                            <div class="card-body mb-2 mt-2">
+                                                <p>Vui lòng kiểm tra email lấy mã ID đơn đặt hàng của quý khách và sử dụng ghi nội dung thanh toán theo cú pháp <b style="color: #eca915">THANH TOAN MA DON + ID</b></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="#payment-3">
+                                            <h5 class="panel-title mb-2">
+                                                <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                 Thông tin chuyển khoản
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                          <!----- danh sach bank ----->
+                                                    <div class="col-lg-9 col-12">
+                                                        <ul>
+                                                            <li><span style="font-weight: bold;color:#234922">1. Ngân hàng SHB Hà Nội</span></li>
+                                                            <li>Chủ tài khoản: Hoàng Mạnh Cường</li>
+                                                            <li>Số tài khoản: 1007217280</li>
+                                                            <li>Chi nhánh: Hà Nội</li>
+                                                        </ul>
+                                                    </div>
+                                        <!-----  ----->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-button-payment">
+                                    <input value="XÁC NHẬN THANH TOÁN" type="submit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!-- Checkout Area End Here -->

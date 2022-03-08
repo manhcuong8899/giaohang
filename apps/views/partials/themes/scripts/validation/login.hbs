@@ -1,0 +1,102 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#loginform').validate({
+            rules: {
+                email:{
+                    required: true,
+                    email:true,
+                },
+                password:{
+                    required:true,
+                    minlength:6
+                }
+            },
+            messages: {
+                email: {
+                    required: "Nhập thông tin tài khoản",
+                    email: "Không đúng định dạng email",
+                },
+                password:{
+                    required: "Nhập mật khẩu truy cập",
+                    minlength:"Mật khẩu ít nhất 6 ký tự"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.single-input-item').append(error);
+                element.closest('.single-input-item').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#registerform').validate({
+            rules: {
+                email:{
+                    required: true,
+                    email:true,
+                },
+                password:{
+                    required:true,
+                    minlength:6
+                },
+                repassword:{
+                    required:true,
+                    minlength:6
+                },
+                full_name:{
+                    required:true,
+                    minlength:5
+                },
+                phone:{
+                    required:true,
+                },
+                address:{
+                    required:true,
+                }
+            },
+            messages: {
+                email: {
+                    required: "Nhập thông tin tài khoản",
+                    email: "Không đúng định dạng email",
+                },
+                password:{
+                    required: "Nhập mật khẩu truy cập",
+                    minlength:"Mật khẩu ít nhất 6 ký tự"
+                },
+                repassword:{
+                    required: "Xác nhận lại mật khẩu",
+                    minlength:"Mật khẩu ít nhất 6 ký tự"
+                },
+                full_name:{
+                    required:"Nhập thông tin Họ và Tên",
+                    minlength:"Điền đầy đủ họ và tên",
+                },
+                phone:{
+                    required:"Nhập thông tin số điện thoại",
+                },
+                address:{
+                    required:"Nhập thông tin địa chỉ",
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.single-input-item').append(error);
+                element.closest('.single-input-item').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,102 @@
+<script>
+$(function () {
+    $('#all').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "pageLength": 25,
+    });
+    $('#all1').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "pageLength": 25,
+    });
+    $('#all2').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "pageLength": 25,
+    });
+    $('#all3').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "pageLength": 25,
+    });
+});
+
+$("input[data-bootstrap-switch]").each(function(){
+    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+});
+
+$('.select2bs4').select2({
+    theme: 'bootstrap4'
+})
+//Datemask dd/mm/yyyy
+$('#dateto').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+$('#datefrom').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+//Money Euro
+$('[data-mask]').inputmask()
+var btnCust = '';
+$("#images").fileinput({
+    overwriteInitial: true,
+    maxFileSize: 1500,
+    showClose: false,
+    showCaption: false,
+    browseLabel: ' &nbsp;&nbsp;Tải ảnh',
+    browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+    removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+    removeTitle: 'Cancel or reset changes',
+    elErrorContainer: '#kv-avatar-errors-1',
+    msgErrorClass: 'alert alert-block alert-danger',
+    layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+    allowedFileExtensions: ["jpg", "png", "gif","png","jpeg"]
+});
+$("#updated_images").fileinput({
+    overwriteInitial: true,
+    maxFileSize: 1500,
+    showClose: false,
+    showCaption: false,
+    browseLabel: ' &nbsp;&nbsp;Tải ảnh',
+    browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+    removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+    removeTitle: 'Cancel or reset changes',
+    elErrorContainer: '#kv-avatar-errors-1',
+    msgErrorClass: 'alert alert-block alert-danger',
+    layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+    allowedFileExtensions: ["jpg", "png", "gif","png","jpeg"]
+});
+////////////////// Delete Products
+$('#confirmDelete').on('show.bs.modal', function(e){
+    id = $(e.relatedTarget).data('id');
+    name = $(e.relatedTarget).data('name');
+    deleteurl = $(e.relatedTarget).data('deleteurl');
+    $("#confirmDelete #name").html(name );
+    $("#delForm").attr('action',deleteurl);
+});
+
+$('#confirmDefault').on('show.bs.modal', function(e){
+    id = $(e.relatedTarget).data('id');
+    name = $(e.relatedTarget).data('name');
+    defaulturl = $(e.relatedTarget).data('defaulturl');
+    $("#confirmDefault #name").html(name );
+    $("#defaultForm").attr('action',defaulturl);
+});
+</script>

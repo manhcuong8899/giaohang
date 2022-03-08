@@ -1,0 +1,210 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Bảng điều khiển</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Bảng điều khiển</a></li>
+                    <li class="breadcrumb-item active">Trang chủ</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>150</h3>
+
+                        <p>Vận đơn</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion note-icon-orderedlist"></i>
+                    </div>
+                    <a href="/admin/delivery/all" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>53</h3>
+
+                        <p>Đơn hàng mua hộ</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="/admin/orders/all" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>44</h3>
+
+                        <p>Shop bán hàng</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="/admin/shop/all" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>65</h3>
+
+                        <p>Đơn vị cung cấp</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="/admin/supply/all" class="small-box-footer">Xem chi tiết<i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-4 connectedSortable">
+                <!-- Custom tabs (Charts with tabs)-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Báo cáo hiệu quả
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane active" id="sales-chart">
+                                <table class="table data-grid table-bordered tbl-serach responsive table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: center;">Trạng thái</th>
+                                        <th style="text-align: center;">Số đơn mua hộ</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td><h4>Tổng đơn mua hộ</h4></td>
+                                        <td style="text-align: center;"><h3>0</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Đơn hàng mới</b></td>
+                                        <td style="text-align: center;"><h4>0</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Hàng đã về kho</b></td>
+                                        <td style="text-align: center;"><h4>0</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Đang giao hàng</b></td>
+                                        <td style="text-align: center;"><h4>0</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Đã giao hàng</b></td>
+                                        <td style="text-align: center;"><h4>0</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Hẹn giao lại</b></td>
+                                        <td style="text-align: center;"><h4>0</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Trả lại hàng</b></td>
+                                        <td style="text-align: center;"><h4>0</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Tỉ lệ hoàn thành</b></td>
+                                        <td style="text-align: center;"><h4>0%</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Tỉ lệ không giao được</b></td>
+                                        <td style="text-align: center;"><h4>0%</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Tỉ lệ hủy</b></td>
+                                        <td style="text-align: center;"><h4>0%</h4></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+            </section>
+            <!-- /.Left col -->
+            <section class="col-lg-8 connectedSortable">
+                <!-- Danh sách đơn hàng -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-shopping-bag"></i>
+                            Danh sách Đơn hàng mới nhất
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="all1" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã đơn hàng</th>
+                                <th>Khách hàng</th>
+                                <th>Số lượng</th>
+                                <th>Thanh toán</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <b>OR09112020</b>
+                                    <br>
+                                    <span class="badge bg-danger">Đang giao</span>
+                                </td>
+                                <td>Hoàng Mạnh Cường<br>+84888191138</td>
+                                <td>10</td>
+                                <td>3.000.000 vnđ</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã đơn hàng</th>
+                                <th>Khách hàng</th>
+                                <th>Số lượng</th>
+                                <th>Thanh toán</th>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body-->
+                </div>
+                <!-- /.card -->
+
+
+            </section>
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

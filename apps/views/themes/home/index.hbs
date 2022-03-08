@@ -1,0 +1,149 @@
+    <div class="product-area mt-text">
+    <div class="container container-default custom-area mb-text">
+    <div class="row">
+    <div class="col-lg-5 m-auto text-center col-custom">
+    <div class="section-content">
+    <h2 class="title-1 text-uppercase">ĐẶC SẢN TRONG THÁNG</h2>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12 product-wrapper col-custom">
+    <div class="product-slider" data-slick-options='{
+                        "slidesToShow": 4,
+                        "slidesToScroll": 1,
+                        "infinite": true,
+                        "arrows": false,
+                        "dots": false
+                        }' data-slick-responsive='[
+                        {"breakpoint": 1200, "settings": {
+                        "slidesToShow": 3
+                        }},
+                        {"breakpoint": 992, "settings": {
+                        "slidesToShow": 2
+                        }},
+                        {"breakpoint": 576, "settings": {
+                        "slidesToShow": 1
+                        }}
+                        ]'>
+{{#forEach data.newsproducts}}
+    <div class="single-item">
+    <div class="single-product position-relative">
+        <div class="product-image">
+            <a class="d-block" href="/san-pham/{{slug}}.html">
+                <img src="/upload/products/{{slug}}/{{images}}" alt="{{name}}" class="product-image-1 w-100">
+            </a>
+        </div>
+    <div class="product-content">
+        <div class="product-rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+        </div>
+    <div class="product-title">
+    <h4 class="title-2"> <a href="/san-pham/{{slug}}.html">{{name}}</a></h4>
+    </div>
+        <div class="price-box">
+            <span class="regular-price" style="color: red">{{formatvnd price}} - {{nameunit}}</span>
+        </div>
+    </div>
+        <div class="add-action d-flex position-absolute">
+            <a href="/addcart/{{sid}}/{{id}}" title="Thêm vào giỏ hàng" href="#"> <i  class="ion-bag"></i></a>
+            <a title="Xem nhanh"><i class="ion-eye"></i></a>
+        </div>
+    </div>
+    </div>
+{{/forEach}}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Newslatter Area Start Here -->
+    <div class="newsletter-area mt-no-text mb-text-p">
+        <div class="container container-default h-100 custom-area">
+            <div class="row h-100">
+                <div class="col-lg-8 col-xl-5 offset-xl-6 offset-lg-3 col-custom">
+                    <div class="newsletter-content text-center d-flex flex-column align-items-center justify-content-center h-100">
+                        <div class="section-content">
+                            <h4 class="title-4 text-uppercase">ƯU ĐÃI <span>ĐẶC BIỆT</span> NHẬN TIN KHUYẾN MÃI</h4>
+                            <h2 class="title-3 text-uppercase">NHẬN MÃ GIẢM GIÁ THÀNH VIÊN</h2>
+                            <p class="desc-content">Đăng ký nhận bản tin của chúng tôi về sản phẩm mới nhất, khuyến mãi và ưu đãi</p>
+                        </div>
+                        <div class="newsletter-form-wrap ml-auto mr-auto">
+                            <form id="mc-form" class="mc-form d-flex position-relative">
+                                <input type="email" id="mc-email" class="form-control email-box" placeholder="Email nhận tin khuyến mãi" name="email">
+                                <button id="mc-submit" class="btn primary-btn obrien-button newsletter-btn position-absolute" type="submit">Đăng ký</button>
+                            </form>
+                            <!-- mailchimp-alerts Start -->
+                            <div class="mailchimp-alerts text-centre">
+                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                <div class="mailchimp-success text-success"></div><!-- mailchimp-success end -->
+                                <div class="mailchimp-error text-danger"></div><!-- mailchimp-error end -->
+                            </div>
+                            <!-- mailchimp-alerts end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-area mb-text">
+    <!----- Dac san mien bac--->
+    <div class="container container-default custom-area">
+    <div class="row">
+    <div class="col-lg-5 m-auto text-center col-custom">
+    <div class="section-content">
+    <h2 class="title-1 text-uppercase">ĐẶC SẢN MIỀN BẮC</h2>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="product-wrapper col-lg-12 col-custom">
+    <div class="row shop_wrapper grid_4">
+
+    <!----- list sản pham--->
+    {{#forEach data.dsmb}}
+    <div class="col-lg-3 col-md-6 col-sm-6 col-custom product-area">
+    <div class="single-product position-relative mb-30">
+        <div class="product-image">
+            <a class="d-block" href="/san-pham/{{slug}}.html">
+                <img src="/upload/products/{{slug}}/{{images}}" alt="{{name}}" class="product-image-1 w-100">
+            </a>
+        </div>
+    <div class="product-content">
+        <div class="product-rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+        </div>
+    <div class="product-title">
+    <h4 class="title-2"> <a href="/san-pham/{{slug}}.html">{{name}}</a></h4>
+    </div>
+        <div class="price-box">
+            <span class="regular-price" style="color: red">{{formatvnd price}} - {{nameunit}}</span>
+        </div>
+    </div>
+        <div class="add-action d-flex position-absolute">
+            <a href="/addcart/{{sid}}/{{id}}" title="Thêm vào giỏ hàng" href="#"> <i  class="ion-bag"></i></a>
+            <a title="Xem nhanh"><i class="ion-eye"></i></a>
+        </div>
+    </div>
+    </div>
+    {{/forEach}}
+    <!----- dong list san pham--->
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-------------->
+    </div>
+    <!-- Latest Blog Area Start Here -->
+   <!-- <div class="latest-blog-area">
+        new_home
+    </div>-->

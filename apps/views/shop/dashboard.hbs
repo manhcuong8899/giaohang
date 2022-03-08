@@ -1,0 +1,391 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Bảng điều khiển</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Bảng điều khiển</a></li>
+                    <li class="breadcrumb-item active">Trang chủ</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{data.totals.delivery}}</h3>
+
+                        <p>Vận đơn</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion note-icon-orderedlist"></i>
+                    </div>
+                    <a href="/shop/delivery/all" class="small-box-footer">Danh sách vận đơn <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{data.totals.shipping}}</h3>
+                        <p>Đang giao hàng</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="/shop/delivery/shipping" class="small-box-footer">Xem chi tiết <i class="fas fa-shipping-fast"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{data.totals.finish}}</h3>
+
+                        <p>Chưa đối soát</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="/shop/delivery/finish" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{data.totals.checking}}</h3>
+                        <p>Đang đối soát</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <a href="/shop/delivery/checking" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-4 connectedSortable">
+                <!-- Custom tabs (Charts with tabs)-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                           Báo cáo hiệu quả
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <!-- Morris chart - Sales -->
+                            <div class="tab-pane active" id="revenue-chart">
+                                <table class="table data-grid table-bordered tbl-serach responsive table-striped">
+                                    <thead style="background-color: coral">
+                                    <tr>
+                                        <th style="text-align: center; color: #ffffff">Trạng thái</th>
+                                        <th style="text-align: center; color: #ffffff">Số vận đơn</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td><h4>Tổng vận đơn</h4></td>
+                                        <td style="text-align: center;"><h2>{{data.totals.delivery}}</h2></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/new" style="text-decoration: none;color: #0b0b0b"><b>Đang đợi xác nhận</b> </a> </td>
+                                        <td style="text-align: center; color: red"><h4>{{data.totals.new}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/confirm" style="text-decoration: none;color: #0b0b0b"><b>Đã xác nhận</b> </a> </td>
+                                        <td style="text-align: center; color: black"><h4>{{data.totals.confirm}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/takeship" style="text-decoration: none;color: #0b0b0b"><b>Shippe đang lấy hàng</b> </a> </td>
+                                        <td style="text-align: center; color: black"><h4>{{data.totals.takeship}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/receivedship" style="text-decoration: none;color: #0b0b0b"><b>Đã giao hàng cho Shipper</b> </a> </td>
+                                        <td style="text-align: center; color: black"><h4>{{data.totals.receivedship}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/shipping" style="text-decoration: none;color: #0b0b0b"><b>Đang giao hàng</b> </a> </td>
+                                        <td style="text-align: center; color: red"><h4>{{data.totals.shipping}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/finish" style="text-decoration: none;color: #0b0b0b"><b>Giao thành công</b> </a> </td>
+                                        <td style="text-align: center; color: blue"><h4>{{data.totals.finish}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/return" style="text-decoration: none;color: #0b0b0b"><b>Khách không lấy hàng</b> </a> </td>
+                                        <td style="text-align: center; color: black"><h4>{{data.totals.sreturn}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/returnshop" style="text-decoration: none;color: #0b0b0b"><b>Hàng đã trả lại</b> </a> </td>
+                                        <td style="text-align: center; color: black"><h4>{{data.totals.returnshop}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/cancel" style="text-decoration: none;color: #0b0b0b"><b>Hủy vận đơn</b> </a> </td>
+                                        <td style="text-align: center; color: black"><h4>{{data.totals.cancel}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/checking" style="text-decoration: none;color: #0b0b0b"><b>Đang đối soát</b> </a> </td>
+                                        <td style="text-align: center; color: red"><h4>{{data.totals.checking}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><a href="/shop/delivery/checked" style="text-decoration: none;color: #0b0b0b"><b>Đã đối soát</b> </a> </td>
+                                        <td style="text-align: center; color: blue"><h4>{{data.totals.checked}}</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Tỉ lệ giao thành công</b></td>
+                                        <td style="text-align: center;"><h4>{{percentdelivery data.totals.delivery data.totals.finish}}%</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Tỉ lệ không giao được</b></td>
+                                        <td style="text-align: center;"><h4>{{percentdelivery data.totals.delivery data.totals.sreturn}}%</h4></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;"><b>Tỉ lệ hủy</b></td>
+                                        <td style="text-align: center;"><h4>{{percentdelivery data.totals.delivery data.totals.cancel}}%</h4></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                               Báo cáo tiền hàng
+                            </h3>
+                        </div><!-- /.card-header -->
+
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <!-- Morris chart - Sales -->
+                                <div class="tab-pane active">
+                                    <table class="table data-grid table-bordered tbl-serach responsive table-striped">
+                                        <thead style="background-color: coral">
+                                        <tr>
+                                            <th style="text-align: center; color: #ffffff">Trạng thái</th>
+                                            <th style="text-align: center; color: #ffffff">Số tiền (VNĐ đồng)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><h4>Tổng tiền</h4></td>
+                                            <td style="text-align: center;color: red"><h3>{{totalsdelivery data.summoney.totalmoney data.summoney.feeorder data.summoney.feeship}}</h3></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 25px;"><b>Tiền thu hộ</b></td>
+                                            <td style="text-align: center;"><h4>{{formatvnd data.summoney.totalmoney}}</h4></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 25px;"><b>Phí thu hộ</b></td>
+                                            <td style="text-align: center;"><h4>{{formatvnd data.summoney.feeorder}}</h4></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 25px;"><b>Phí vận chuyển</b></td>
+                                            <td style="text-align: center;"><h4>{{formatvnd data.summoney.feeship}}</h4></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!-- /.card-body -->
+
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-8 connectedSortable">
+                <!-- Danh sách vận đơnchưa gửi vận chuyển -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-file-contract nav-icon"></i>
+                                 Danh sách Vận đơn chưa gửi vận chuyển
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th style="width: 15px">STT</th>
+                                <th>Mã vận đơn</th>
+                                <th>Tiền thu hộ</th>
+                                <th>Phí</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#forEach data.chuachuyen}}
+                            <tr>
+                                <td>{{index}}</td>
+                                <td>
+                                    <a href="/shop/delivery/detail/{{code}}" style="text-decoration: none"><b>{{code}}</b> </a>
+                                </td>
+                                <td>
+                                    {{formatvnd totalmoney}}
+                                </td>
+                                <td>
+                                   Mua hộ: <b>{{formatvnd feeorder}}</b><br>
+                                    Vận chuyển: <b> {{formatvnd feeship}}</b>
+                                </td>
+                                <td>{{formatdate created_at}}</td>
+                                <td>{{statusname}}</td>
+                            </tr>
+                            {{/forEach}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th style="width: 15px">STT</th>
+                                <th>Mã vận đơn</th>
+                                <th>Tiền thu hộ</th>
+                                <th>Phí</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body-->
+                </div>
+                <!-- /.card -->
+
+                <!-- Danh sách vận đơn giao khách hàng -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-file-contract nav-icon"></i>
+                            Danh sách Vận đơn giao khách hàng
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th style="width: 15px">STT</th>
+                                <th>Mã vận đơn</th>
+                                <th>Tiền thu hộ</th>
+                                <th>Phí</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#forEach data.giaokhach}}
+                                <tr>
+                                    <td>{{index}}</td>
+                                    <td>
+                                        <a href="/shop/delivery/detail/{{code}}" style="text-decoration: none"><b>{{code}}</b> </a>
+                                    </td>
+                                    <td>
+                                        {{formatvnd totalmoney}}
+                                    </td>
+                                    <td>
+                                        Mua hộ: <b>{{formatvnd feeorder}}</b><br>
+                                        Vận chuyển: <b> {{formatvnd feeship}}</b>
+                                    </td>
+                                    <td>{{formatdate created_at}}</td>
+                                    <td>{{statusname}}</td>
+                                </tr>
+                            {{/forEach}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th style="width: 15px">STT</th>
+                                <th>Mã vận đơn</th>
+                                <th>Tiền thu hộ</th>
+                                <th>Phí</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body-->
+                </div>
+                <!-- /.card -->
+
+                <!-- Danh sách vận đơn trả hủy -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-file-contract nav-icon"></i>
+                            Danh sách Vận đơn trả hủy
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th style="width: 15px">STT</th>
+                                <th>Mã vận đơn</th>
+                                <th>Tiền thu hộ</th>
+                                <th>Phí</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#forEach data.trahuy}}
+                                <tr>
+                                    <td>{{index}}</td>
+                                    <td>
+                                        <a href="/shop/delivery/detail/{{code}}" style="text-decoration: none"><b>{{code}}</b> </a>
+                                    </td>
+                                    <td>
+                                        {{formatvnd totalmoney}}
+                                    </td>
+                                    <td>
+                                        Mua hộ: <b>{{formatvnd feeorder}}</b><br>
+                                        Vận chuyển: <b> {{formatvnd feeship}}</b>
+                                    </td>
+                                    <td>{{formatdate created_at}}</td>
+                                    <td>{{statusname}}</td>
+                                </tr>
+                            {{/forEach}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th style="width: 15px">STT</th>
+                                <th>Mã vận đơn</th>
+                                <th>Tiền thu hộ</th>
+                                <th>Phí</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body-->
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

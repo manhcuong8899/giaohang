@@ -1,0 +1,76 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+<script>
+    CKEDITOR.replace( 'short',{
+        height:'200px',
+    });
+    CKEDITOR.replace( 'long', {
+        height:'500px',
+    });
+    $(document).ready(function() {
+        $("#input-image").fileinput({
+            maxFileCount: 5,
+            allowedFileExtensions: ["jpg", "jpeg", "gif", "png"],
+            previewClass: "bg-light"
+        });
+    });
+    function ajax_dl_images(url,id) {
+        var routers = '{{baseurl '/admin/products/deleteimages'}}';
+        let token  = $('#csrf').val();
+        $.ajax({
+            headers: {"X-CSRF-Token": token },
+            url: routers,
+            type: 'post',
+            data: {url: url}
+        }).done(function(data){
+            document.getElementById(id).style.display="none";
+        }).fail(function(data) {
+            alert('Lỗi xóa dữ liệu file ảnh');
+        });
+    };
+    $('#parent_cate').change(function(){
+        var parent_cate = $('#parent_cate').val();
+        var url = '{{baseurl '/admin/products/ajax/getcate'}}';
+        let token  = $('#csrf').val();
+        $.ajax({
+            headers: {"X-CSRF-Token": token },
+            url: url,
+            dataType: "json",
+            type: "post",
+            data: {parent_cate: parent_cate}
+        }).done(function(jsonData) {
+            var opt = '';
+            $.each(jsonData, function (i, getdata) {
+                var rowdata = '<option value='+getdata.id+'>';
+                rowdata += getdata.name;
+                rowdata += '</option>';
+                opt += rowdata;
+            });
+            $('#cate_id').html(opt);
+        }).fail(function(jsonData) {
+            alert('Lỗi lấy dữ liệu danh mục sản phẩm');
+        });
+    });
+    function editselling(url){
+        $('#EditSellingForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditSellingForm').attr('action', url);
+                $('#EditSellingForm [name="price"]').val(data.price);
+                $('#EditSellingForm [name="amount"]').val(data.amount);
+                $('#EditSellingForm [name="name"]').val(data.name);
+                $('#EditSellingForm [name="p_id"]').val(data.p_id).trigger("change");
+                $('#EditSellingForm [name="address"]').val(data.address);
+                $('#EditSellingForm [name="phone"]').val(data.phone);
+                $('#updatedselling').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu sản phẩm đăng bán!');
+            }
+        });
+    }
+</script>

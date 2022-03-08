@@ -1,0 +1,107 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Cấu hình chung cho hệ thống Website</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Cấu hình chung Website</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <form role="form" id="configWebsiteForm" method="POST" action="/admin/website/settings">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin chung</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tiêu đề trang chủ</label>
+                                        <input type="text" class="form-control" id="tittle" placeholder="Tiêu đề trang chủ" name="tittle" value="{{data.settings.tittle}}">
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Logo</label>
+                                        <input type="file" id="images" name="images" class="file-loading" accept="image/*">
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Thẻ keywords</label>
+                                        <textarea class="form-control" id="keywords" type="text" name="keywords" rows="3"/>{{data.settings.keywords}}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thẻ description</label>
+                                        <textarea class="form-control" id="description" type="text" name="description" rows="3"/>{{data.settings.description}}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Địa chỉ email" name="email" value="{{data.settings.email}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Trụ sở</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Địa chỉ trụ sở" name="address" value="{{data.settings.address}}">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Điện thoại</label>
+                                        <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" name="phone" value="{{data.settings.phone}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Hotline</label>
+                                        <input type="text" class="form-control" id="hotline" placeholder="Text Hotline" name="hotline" value="{{data.settings.hotline}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Zalo</label>
+                                        <input type="text" class="form-control" id="zalo" placeholder="Số điện thoại sử dụng zalo" name="zalo" value="{{data.settings.zalo}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fanpage</label>
+                                        <input type="text" class="form-control" id="fanpage" placeholder="Link Fanpage" name="fanpage" value="{{data.settings.fanpage}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Google Map</label>
+                                        <textarea class="form-control" id="googlemap" type="text" name="googlemap" rows="3" placeholder="Nhúng Google Map"/>{{data.settings.googlemap}}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thời gian làm việc</label>
+                                        <input type="text" class="form-control" id="time" placeholder="Thời gian làm việc" name="time" value="{{data.settings.time}}">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->

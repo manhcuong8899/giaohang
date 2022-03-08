@@ -1,0 +1,25 @@
+<script>
+ function editimages(url){
+     $('#EditImagesForm')[0].reset();
+     let token  = $('#csrf').val();
+     var posturl = url+'?_csrf='+token;
+     $.ajax({
+         url: url,
+         type: "GET",
+         dataType: "JSON",
+         success: function (data) {
+             $('#EditImagesForm').attr('action', posturl);
+             $('#EditImagesForm [name="name"]').val(data.name);
+             $('#EditImagesForm [name="link"]').val(data.link);
+             $('#EditImagesForm [name="short"]').val(data.short);
+             $('#EditImagesForm [name="type"]').val(data.type).trigger("change");
+             $('#EditImagesForm [name="viewimages"]').attr("src", "/upload/images/"+data.slug+"/"+data.images);
+             $('#EditImagesForm [name="orders"]').val(data.orders);
+             $('#updatedimages').modal('show');
+         },
+         error: function (jqXHR, textStatus, errorThrown){
+             alert('Lỗi lấy dữ liệu thông tin hình ảnh!');
+         }
+     });
+ }
+</script>

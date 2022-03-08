@@ -1,0 +1,98 @@
+<div class="breadcrumbs-area position-relative" style="background: #f6f6f6 url('/admin/assets/images/bg/1-1.jpg') no-repeat scroll center center/cover; padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="breadcrumb-content position-relative section-content">
+                        <h3 class="title-3">CHI TIẾT GIỎ HÀNG</h3>
+                        <ul>
+                            <li><a href="#">Giỏ hàng sản phẩm </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- cart main wrapper start -->
+    <div class="cart-main-wrapper mt-no-text mb-no-text">
+        <div class="container container-default-2 custom-area">
+            <form id="FormUpdateCart" action="/updatecart" class=" d-block d-md-flex" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <div class="row">
+                <div class="col-lg-12">
+                    <!-- Cart Table Area -->
+                    <div class="cart-table table-responsive">
+
+                            <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="pro-thumbnail">Hình ảnh</th>
+                                <th class="pro-title">Sản phẩm</th>
+                                <th class="pro-price">Đơn giá</th>
+                                <th class="pro-quantity">Số lượng</th>
+                                <th class="pro-subtotal">Thành tiền</th>
+                                <th class="pro-remove">Hủy mua</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#if cart}}
+                                {{#forEach cart}}
+                                    <tr>
+                                        <td class="pro-thumbnail"><img src="/upload/products/{{slug}}/{{images}}" alt="{{name}}" class="img-fluid"></td>
+                                        <td class="pro-title"><a href="#">{{name}}</a></td>
+                                        <td class="pro-price"><span>{{formatvnd price}}</span>
+                                        </td>
+                                        <td class="pro-quantity">
+                                            <div class="quantity">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" value="{{qty}}" type="number" min="1" name="qty[]">
+                                                    <div class="dec qtybutton">-</div>
+                                                    <div class="inc qtybutton">+</div>
+                                                    <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
+                                                    <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="pro-subtotal"><span> {{formatvnd totals}}</span>
+                                        </td>
+                                        <td class="pro-remove"><a  class="ch4_btn" href="/deletecart/{{id}}"><i class="ion-trash-b"></i></a></td>
+                                    </tr>
+                                {{/forEach}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="6">Giỏ hàng trống</td>
+                                </tr>
+                            {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Cart Update Option -->
+                    <div class="cart-update-option d-block d-md-flex justify-content-between">
+                        <div class="cart-update mt-sm-16" align="center">
+                            <button class="btn obrien-button primary-btn" type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class="row">
+                <div class="col-lg-5 ml-auto">
+                    <!-- Cart Calculation Area -->
+                    <div class="cart-calculator-wrapper">
+                        <div class="cart-calculate-items">
+                            <h3>Hóa đơn thành toán (Chưa bao gồm VAT)</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr class="total">
+                                        <td>Thành tiền hàng hóa</td>
+                                        <td class="total-amount">{{formatvnd data.total}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <a href="/checkout" class="btn obrien-button primary-btn d-block">Tiếp tục Thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- cart main wrapper end -->

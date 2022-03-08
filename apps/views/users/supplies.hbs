@@ -1,0 +1,249 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý tài khoản nhà cung cấp</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                    <li class="breadcrumb-item active">Tài khoản Nhà cung cấp</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- /.card -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <form action="/admin/users/supplies/seach" method="post" id="SeachUserForm">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control select2bs4" style="width: 100%;" name="s_supply">
+                                                <option value="-1">Theo Đơn vị cung cấp</option>
+                                                {{#each data.branch}}
+                                                    <option value="{{id}}">{{name}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            <select class="form-control select2bs4" style="width: 100%;" name="s_roles">
+                                                <option value="-1" selected="selected">Theo Quyền hạn</option>
+                                                {{#each data.listroles}}
+                                                    <option value="{{id}}">{{label}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Họ và Tên" name="s_fullname">
+                                        </div>
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  placeholder="Số điện thoại" name="s_phone">
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <div class="box-footer" align="center">
+                                    <button type="submit" class="btn btn-outline-danger">Tìm kiếm</button>
+                                </div>
+                                <!-- /.row -->
+                                <!-- /.row -->
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Họ và tên</th>
+                                <th>Tài khoản</th>
+                                <th>Quyền hạn</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Trạng thái</th>
+                                <th style="width: 20%">Thao tác</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#forEach data.liststaff}}
+                                <tr>
+                                    <td align="center">{{index}}</td>
+                                    <td>{{full_name}}</td>
+                                    <td>{{username}}</td>
+                                    <td>{{rolesname}}</td>
+                                    <td>{{supplyname}}</td>
+                                    <td>
+                                        {{status_users status}}
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" onclick="edituser('{{baseurl '/admin/users/supplies/view/'}}{{id}}')">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        {{#ifvalue no_delete 0}}
+                                            <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{username}}"  data-deleteurl="{{baseurl '/admin/users/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                            </button>
+                                        {{/ifvalue}}
+                                    </td>
+                                </tr>
+                            {{/forEach}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Họ và tên</th>
+                                <th>Tài khoản</th>
+                                <th>Quyền hạn</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- /.modal -->
+
+<div class="modal fade" id="updatedstaff">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thông tin tài khoản</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" id="EditUserForm" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-person-booth"></i></span>
+                                </div>
+                                <select class="form-control select2" style="width: 100%;" name="supply_id" disabled>
+                                    {{#each data.branch}}
+                                        <option value="{{id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Họ và Tên</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Nhập Họ và Tên" name="full_name" id="full_name">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="text" name="phone" placeholder="Số điện thoại" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" name="email" class="form-control" placeholder="Địa chỉ Email">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-person-booth"></i></span>
+                                </div>
+                                <select class="form-control select2" style="width: 100%;" name="roles">
+                                    <option value="-1" selected="selected">Lựa chọn Quyền hạn</option>
+                                    {{#each data.listroles}}
+                                        <option value="{{id}}">{{label}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text"  placeholder="Ngày tháng năm sinh" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" name="birthday">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-address-card"></i></span>
+                                </div>
+                                <input type="text"  placeholder="Địa chỉ" class="form-control" name="address">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-check-circle"></i></span>
+                                </div>
+                                <select class="form-control select2" style="width: 100%;" name="status">
+                                    <option value="1">Kích hoạt</option>
+                                    <option value="2">Khóa</option>
+                                </select>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!---- Modal Xác nhận xóa-->
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Xác nhận xóa tài khoản</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Đồng ý xóa tài khoản <b><span id="name"></span></b>?</p>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <form role="form" id="delForm" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>

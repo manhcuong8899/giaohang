@@ -1,0 +1,261 @@
+    <div class="breadcrumbs-area position-relative" style="background: #f6f6f6 url('/admin/assets/images/bg/1-1.jpg') no-repeat scroll center center/cover; padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="breadcrumb-content position-relative section-content">
+                        <h3 class="title-3">TRANG THÀNH VIÊN</h3>
+                    {{#if members}}
+                        <ul>
+                            <li><a href="#">Thành viên</a></li>
+                            <li>{{members.full_name}}</li>
+                    {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- my account wrapper start -->
+    <div class="my-account-wrapper mt-no-text mb-no-text">
+        <div class="container container-default-2 custom-area">
+            <div class="row">
+                <div class="col-lg-12 col-custom">
+                    <!-- My Account Page Start -->
+                    <div class="myaccount-page-wrapper">
+                        <!-- My Account Tab Menu Start -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-custom">
+                                <div class="myaccount-tab-menu nav" role="tablist">
+                                    <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Thông tin tài khoản</a>
+                                    <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
+                                        Danh sách đơn hàng</a>
+                                    <a href="/logout"><i class="fa fa-sign-out"></i> Thoát</a>
+                                </div>
+                            </div>
+                            <!-- My Account Tab Menu End -->
+
+                            <!-- My Account Tab Content Start -->
+                            <div class="col-lg-9 col-md-8 col-custom">
+                                <div class="tab-content" id="myaccountContent">
+                                    <!-- Single Tab Content Start -->
+                                    <div class="tab-pane fade" id="orders" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3>Danh sách đơn hàng</h3>
+                                                <div class="col-lg-12">
+                                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active text-uppercase" id="new-tab" data-toggle="tab" href="#connect-1" role="tab" aria-selected="true"><b>Đơn hàng mới</b></a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-uppercase" id="deposit-tab" data-toggle="tab" href="#connect-2" role="tab" aria-selected="false"><b>Đặt cọc</b></a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-uppercase" id="shipping-tab" data-toggle="tab" href="#connect-3" role="tab" aria-selected="false"><b>Đang giao</b></a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-uppercase" id="finish-tab" data-toggle="tab" href="#connect-4" role="tab" aria-selected="false"><b>Giao thành công</b></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content mb-text" id="myTabContent">
+                                                        <div class="tab-pane fade show active" id="connect-1" role="tabpanel" aria-labelledby="new-tab">
+                                                            <div class="myaccount-table table-responsive text-center">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th>STT</th>
+                                                                        <th>Mã đơn hàng</th>
+                                                                        <th>Ngày đặt</th>
+                                                                        <th>Tổng thanh toán</th>
+                                                                        <th>Thao tác</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                {{#forEach data.neworders}}
+                                                                    <tr>
+                                                                        <td>{{index}}</td>
+                                                                        <td><b>{{code}}</b>
+                                                                        <br><span style="color:{{statusOrders status}}">{{statusname}}</span>
+                                                                        </td>
+                                                                        <td>{{formatdatetime created_at}}</td>
+                                                                        <td><b style="color: red">{{totalorder totals feeship feepack feebuy}}</b></td>
+                                                                        <td>
+                                                                            <a href="/members/vieworder/{{code}}" class="btn obrien-button-2 primary-color rounded-0">Chi tiết</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                {{/forEach}}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="deposit-tab">
+                                                            <div class="myaccount-table table-responsive text-center">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th>STT</th>
+                                                                        <th>Mã đơn hàng</th>
+                                                                        <th>Phí đặt cọc</th>
+                                                                        <th>Tổng thanh toán</th>
+                                                                        <th>Thao tác</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {{#forEach data.depositorders}}
+                                                                        <tr>
+                                                                            <td>{{index}}</td>
+                                                                            <td><b>{{code}}</b>
+                                                                                <br><span style="color:{{statusOrders status}}">{{statusname}}</span>
+                                                                            </td>
+                                                                            <td>{{formatvnd deposit}}</td>
+                                                                            <td><b style="color:black "><b style="color: red">{{totalorder totals feeship feepack feebuy}}</b></td>
+                                                                            <td>
+                                                                                <a href="/members/vieworder/{{code}}" class="btn obrien-button-2 primary-color rounded-0">Chi tiết</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    {{/forEach}}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="connect-3" role="tabpanel" aria-labelledby="shipping-tab">
+                                                            <div class="myaccount-table table-responsive text-center">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th>STT</th>
+                                                                        <th>Mã đơn hàng</th>
+                                                                        <th>Ngày đặt</th>
+                                                                        <th>Cần thanh toán</th>
+                                                                        <th>Thao tác</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {{#forEach data.shiporders}}
+                                                                        <tr>
+                                                                            <td>{{index}}</td>
+                                                                            <td><b>{{code}}</b>
+                                                                                <br><span style="color:{{statusOrders status}}">{{statusname}}</span>
+                                                                            </td>
+                                                                            <td>{{formatdatetime created_at}}</td>
+                                                                            <td><b style="color: red">{{totalback totals feeship feepack feebuy deposit status}}</b></td>
+                                                                            <td>
+                                                                                <a href="/members/vieworder/{{code}}" class="btn obrien-button-2 primary-color rounded-0">Chi tiết</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    {{/forEach}}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="connect-4" role="tabpanel" aria-labelledby="finish-tab">
+                                                            <div class="myaccount-table table-responsive text-center">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th>STT</th>
+                                                                        <th>Mã đơn hàng</th>
+                                                                        <th>Ngày đặt</th>
+                                                                        <th>Ngày giao</th>
+                                                                        <th>Tổng giá trị</th>
+                                                                        <th>Thao tác</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {{#forEach data.finishorders}}
+                                                                        <tr>
+                                                                            <td>{{index}}</td>
+                                                                            <td><b>{{code}}</b>
+                                                                                <br><span style="color:{{statusOrders status}}">{{statusname}}</span>
+                                                                            </td>
+                                                                            <td>{{formatdatetime created_at}}</td>
+                                                                            <td>{{formatdatetime deliverydate}}</td>
+                                                                            <td><b style="color: red">{{totalorder totals feeship feepack feebuy}}</b></td>
+                                                                            <td>
+                                                                                <a href="/members/vieworder/{{code}}" class="btn obrien-button-2 primary-color rounded-0">Chi tiết</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    {{/forEach}}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <!----- ket thuc tab -->
+                                        </div>
+                                    </div>
+                                    <!-- Single Tab Content End -->
+
+                                    <!-- Single Tab Content Start -->
+
+                                    <div class="tab-pane fade show active" id="account-info" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3>Thông tin tài khoản</h3>
+                                            <div class="account-details-form">
+                                                <form action="/members/update" method="post">
+                                                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                                                    <div class="single-input-item mb-3">
+                                                        <label for="display-name" class="required mb-1">Họ và Tên</label>
+                                                        <input type="text" id="full_name" name="full_name" placeholder="Họ và Tên" value="{{data.amember.full_name}}" />
+                                                    </div>
+                                                    <div class="single-input-item mb-3">
+                                                        <label for="email" class="required mb-1">Địa chỉ Email</label>
+                                                        <input type="text" id="email" name="email" placeholder="Địa chỉ Email" value="{{data.amember.email}}" />
+                                                    </div>
+                                                    <div class="single-input-item mb-3">
+                                                        <label for="email" class="required mb-1">Địa chỉ</label>
+                                                        <input type="text" id="address" name="address" placeholder="Địa chỉ" value="{{data.amember.address}}" />
+                                                    </div>
+                                                    <fieldset>
+                                                        <legend>Thay đổi mật khẩu</legend>
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-custom">
+                                                                <div class="single-input-item mb-3">
+                                                                    <label for="new-pwd" class="required mb-1">Mật khẩu mới</label>
+                                                                    <input type="password" name="password" id="password" placeholder="Mật khẩu mới" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-custom">
+                                                                <div class="single-input-item mb-3">
+                                                                    <label for="confirm-pwd" class="required mb-1">Nhập lại mật khẩu mới</label>
+                                                                    <input type="password"  name="repassword" id="repassword" placeholder="Nhập lại mật khẩu mới" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="single-input-item single-item-button">
+                                                        <button class="btn obrien-button primary-btn">Lưu lại</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div> <!-- Single Tab Content End -->
+
+                                </div>
+                            </div> <!-- My Account Tab Content End -->
+                        </div>
+                    </div> <!-- My Account Page End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- my account wrapper end -->
+    <!-- Support Area Start Here -->
+    <div class="support-area">
+        <div class="container container-default custom-area">
+            <div class="row">
+                <div class="col-lg-12 col-custom">
+                    <div class="support-wrapper d-flex">
+                        <div class="support-content">
+                            <h1 class="title">BẠN CẦN HỖ TRỢ ?</h1>
+                            <p class="desc-content">Hỗ trợ 24/7 gọi hotline 0888-819-1138</p>
+                        </div>
+                        <div class="support-button d-flex align-items-center">
+                            <a class="obrien-button primary-btn" href="#">LIÊN HỆ VỚI CHÚNG TÔI</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Support Area End Here -->

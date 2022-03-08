@@ -1,0 +1,24 @@
+<script>
+    function editsupplies(url){
+        $('#EditSuppliesForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditSuppliesForm').attr('action', url);
+                $('#EditSuppliesForm [name="name"]').val(data.name);
+                $('#EditSuppliesForm [name="full_name"]').val(data.full_name);
+                $('#EditSuppliesForm [name="phone"]').val(data.phone);
+                $('#EditSuppliesForm [name="email"]').val(data.email);
+                $('#EditSuppliesForm [name="taxcode"]').val(data.taxcode);
+                $('#EditSuppliesForm [name="address"]').val(data.address);
+                $('#EditSuppliesForm [name="status"]').val(data.status);
+                $('#updatedsupplies').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin Shop!');
+            }
+        });
+    }
+</script>

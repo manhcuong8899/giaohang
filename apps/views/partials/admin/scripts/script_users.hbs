@@ -1,0 +1,51 @@
+<script>
+    $('#checkboxPrimary2').change(function() {
+        if(this.checked) {
+            $("#shop").css("display", "block");
+            $("#permission").css("display", "block");
+            $('#checkboxPrimary2').val(this.checked);
+        }else{
+            $("#shop").css("display", "none");
+            $("#permission").css("display", "none");
+            $('#checkboxPrimary2').val();
+        }
+
+    });
+    $('#checkboxPrimary3').change(function() {
+        if(this.checked) {
+            $("#shopupdate").css("display", "block");
+            $("#permissionupdate").css("display", "block");
+            $('#checkboxPrimary3').val(this.checked);
+        }else{
+            $("#shopupdate").css("display", "none");
+            $("#permissionupdate").css("display", "none");
+            $('#checkboxPrimary3').val();
+        }
+    });
+    function edituser(url){
+        $('#EditUserForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            timeout: 15000,
+            success: function (data) {
+                $('#EditUserForm').attr('action', url);
+                $('#EditUserForm [name="full_name"]').val(data.full_name);
+                $('#EditUserForm [name="phone"]').val(data.phone);
+                $('#EditUserForm [name="email"]').val(data.email);
+                $('#EditUserForm [name="roles"]').val(data.role_id).trigger("change");
+                $('#EditUserForm [name="branch_id"]').val(data.branch_id).trigger("change");
+                $('#EditUserForm [name="shop_id"]').val(data.shop_id).trigger("change");
+                $('#EditUserForm [name="birthday"]').val(data.birthday);
+                $('#EditUserForm [name="address"]').val(data.address);
+                $('#EditUserForm [name="status"]').val(data.status);
+                $('#updatedstaff').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu tài khoản!');
+            }
+        });
+    }
+</script>
+

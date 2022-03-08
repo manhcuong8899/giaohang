@@ -1,0 +1,284 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 col-xs-12">
+                <h1>Quản lý địa chỉ nhận hàng</h1>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                    <li class="breadcrumb-item active">Thông tin địa chỉ nhận hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <form role="form" id="shopAddressForm" method="POST" action="/shop/settings/address">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm địa chỉ nhận hàng</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tên người giao hàng</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Tên người giao hàng" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tỉnh/Thành phố</label>
+                                        <select class="form-control select2bs4" style="width: 100%;" id="province" name="province">
+                                            <option value="-1">Lựa chọn tỉnh Thành phố</option>
+                                            {{#forEach data.province}}
+                                                <option value="{{code}}">{{name}}</option>
+                                            {{/forEach}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quận/Huyện</label>
+                                        <select class="form-control select2bs4" id="district" style="width: 100%;" name="district">
+                                            <option value="-1">Lựa chọn Quận/Huyện</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phường/Xã</label>
+                                        <select class="form-control select2bs4" id="wards" style="width: 100%;" name="wards">
+                                            <option value="-1">Lựa chọn Phường/Xã</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input type="number" class="form-control" id="phone" placeholder="Điện thoại" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Số nhà, ngõ" name="address">
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Google Map</label>
+                                        <textarea class="form-control" id="googlemap" type="text" name="googlemap" rows="3" placeholder="Nhúng Google Map"/></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--- Danh sách Danh mục -->
+            <div class="col-9 col-xs-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách địa chỉ nhận hàng</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#forEach data.listaddress}}
+                                        <tr>
+                                            <td>{{index}}</td>
+                                            <td>
+                                                {{#ifvalue setdefault 1}}
+                                                    <b style="color: red">{{address}},{{namewards}},{{namedistrict}},{{nameprovince}}</b>
+                                                    <br>
+                                                    Người giao hàng: {{name}}<br>
+                                                    Số điện thoại: {{phone}}
+                                                {{/ifvalue}}
+                                                {{#ifvalue setdefault 0}}
+                                                    <b>{{address}},{{namewards}},{{namedistrict}},{{nameprovince}}</b>
+                                                    <br>
+                                                    Người giao hàng: {{name}}<br>
+                                                    Số điện thoại: {{phone}}
+                                                {{/ifvalue}}
+                                            </td>
+                                            <td align="right">
+                                                <button  class="btn btn-info btn-sm" onclick="editbranch('{{baseurl '/shop/settings/address/view/'}}{{id}}')">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Sửa
+                                                </button>
+                                                {{#ifvalue setdefault 0}}
+                                                    <button type="button" class="btn btn-primary btn-sm" data-id="{{id}}" data-name="{{address}}"  data-defaulturl="{{baseurl '/shop/settings/address/default/'}}{{id}}" data-toggle="modal" data-target="#confirmDefault">
+                                                        <i  class="fas fa-plus" data-toggle="tooltip" title="Thiết lập tài khoản đối soát mặc định"></i> Set Mặc định
+                                                    </button>
+                                                {{/ifvalue}}
+                                                <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{name}}"  data-deleteurl="{{baseurl '/shop/settings/address/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                    <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {{/forEach}}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="updatedbranch">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật thông tin Trạm vận chuyển</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" id="EditAddressForm" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Tên người giao hàng</label>
+                                <input type="text" class="form-control" id="name" placeholder="Tên người giao hàng" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label>Tỉnh/Thành phố</label>
+                                <select class="form-control select2bs4" style="width: 100%;" id="updated_province" name="province">
+                                    <option value="-1">Lựa chọn tỉnh Thành phố</option>
+                                    {{#forEach data.province}}
+                                        <option value="{{code}}">{{name}}</option>
+                                    {{/forEach}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quận/Huyện</label>
+                                <select class="form-control select2bs4" id="updated_district" style="width: 100%;" name="district">
+                                    <option value="-1">Lựa chọn Quận/Huyện</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Phường/Xã</label>
+                                <select class="form-control select2bs4" id="updated_wards" style="width: 100%;" name="wards">
+                                    <option value="-1">Lựa chọn Phường/Xã</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input type="number" class="form-control" id="phone" placeholder="Điện thoại" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label>Địa chỉ</label>
+                                <input type="text" class="form-control" id="address" placeholder="Số nhà, ngõ" name="address">
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>Google Map</label>
+                                <textarea class="form-control" id="googlemap" type="text" name="googlemap" rows="3" placeholder="Nhúng Google Map"/></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /.modal-dialog -->
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Xác nhận xóa thiết lập Trạm vận chuyển</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Đồng ý xóa thiết lập Trạm vận chuyển <b><span id="name"></span></b>?</p>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <form role="form" id="delForm" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</div>
+
+<!-- /.modal-dialog -->
+<div class="modal fade" id="confirmDefault">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Xác nhận thiết lập địa chỉ lấy hàng mặc định</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Đồng ý Xác nhận thiết lập địa chỉ <b><span id="name"></span></b> làm địa chỉ lấy hàng mặc định?</p>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <form role="form" id="defaultForm" method="POST">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-success">Đồng ý</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</div>

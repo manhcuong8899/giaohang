@@ -1,0 +1,463 @@
+<!-- Brand Logo -->
+<a href="index3.html" class="brand-link">
+    <img src="/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+         style="opacity: .8">
+    <span class="brand-text font-weight-light"><b>HỆ THỐNG QUẢN LÝ</b></span>
+</a>
+<!-- Sidebar -->
+<div class="sidebar">
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-header"><b>NHÂN VIÊN</b></li>
+        <li class="nav-item has-treeview">
+            <a href="/admin/dashboard" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Bảng điều khiển
+                </p>
+            </a>
+        </li>
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-file-contract nav-icon"></i>
+                <p>
+                   Quản lý vận đơn
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/admin/delivery" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Tất cả vận đơn</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/new" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Vận đơn mới</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/confirm" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đã xác nhận</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/takeship" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Giao shipper lấy hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/receivedship" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Shipper đã nhận</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/shipping" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đang giao hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/finish" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Giao thành công</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/return" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Trả lại hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/returnshop" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đã trả hàng Shop</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/cancel" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Hủy vận đơn</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/checking" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đang đối soát</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/delivery/checked" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đã đối soát</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-cart-arrow-down nav-icon"></i>
+                <p>
+                    Quản lý mua hộ
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/admin/orders" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Tất cả đơn hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/new" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đơn hàng mới</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/wait" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đợi KH xác nhận</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/confirm" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đã xác nhận</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/waitingdeposit" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Chờ đặt cọc</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/deposit" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đã đặt cọc</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/picking" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đang lấy hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/stock" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Hàng đã về kho</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/shipping" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đang giao hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/finish" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đã giao hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/appointment" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Hẹn giao lại</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/return" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Trả lại hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/returnsupplly" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Trả lại nhà cung cấp</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders/cancel" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Hủy đơn hàng</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="/admin/customers/all" class="nav-link">
+                <i class="fas fa-users nav-icon"></i>
+                <p>
+                    Quản lý khách hàng
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/admin/shops/all" class="nav-link">
+                <i class="fas fa-shopping-bag nav-icon"></i>
+                <p>
+                    Quản lý shop bán hàng
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/admin/supplies/all" class="nav-link">
+                <i class="fas fa-building nav-icon"></i>
+                <p>
+                    Quản lý nhà cung cấp
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fab fa-product-hunt nav-icon"></i>
+                <p>
+                    Quản lý sản phẩm
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/admin/products/created" class="nav-link">
+                        <i class="fas fa-plus nav-icon"> </i>
+                        <p>Thêm mới sản phẩm</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/products/all" class="nav-link">
+                        <i class="fas fa-procedures nav-icon"></i>
+                        <p>Danh sách sản phẩm</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/products/check" class="nav-link">
+                        <i class="fas fa-business-time nav-icon"> </i>
+                        <p>Duyệt SP nhà cung cấp</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="/admin/products/selling" class="nav-link">
+                <i class="fab fa-product-hunt nav-icon"></i>
+                <p>
+                    Sản phẩm đăng bán
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+        </li>
+        <li class="nav-header"><b>QUẢN TRỊ HỆ THỐNG</b></li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Quản lý tài khoản
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/admin/users/staff" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Nhân sự</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/users/supplies" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Đơn vị cung cấp</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/users/shops" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Shop bán hàng</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                    Cấu hình chung
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/admin/config/unit" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Cấu hình đơn vị sản phẩm</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/config/banks" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Tài khoản ngân hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/config/locale" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Quản lý vùng miền</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/config/branch" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Trạm vận chuyển</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/config/timedelivery" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Thời gian giao hàng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/config/cost" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Cấu hình chi phí chung</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-sitemap"></i>
+                <p>
+                    Quản trị Website
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/admin/website/settings" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Cấu hình chung</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Quản lý danh mục</p>
+                        <i class="fas fa-angle-left right"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/category/products" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Danh mục sản phẩm</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/category/introduction" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Danh mục giới thiệu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/category/services" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Danh mục dịch vụ</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/category/news" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Danh mục tin tức</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/category/notification" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Danh mục thông báo</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/category/policy" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Quy định và Chính sách</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/category/guide" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Hướng dẫn</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Biên tập nội dung</p>
+                        <i class="fas fa-angle-left right"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/articles/introduction" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Giới thiệu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/articles/policy" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Quy định và Chính sách</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/articles/guide" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Hướng dẫn</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/articles/notification" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Thông báo</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/articles/news" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Tin tức</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/articles/services" class="nav-link">
+                                <i class="far nav-icon"></i>
+                                <p>Dịch vụ</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/images" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Quản lý hình ảnh</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->

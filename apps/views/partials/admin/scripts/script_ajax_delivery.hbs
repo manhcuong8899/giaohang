@@ -1,0 +1,201 @@
+<script>
+$('#province').change(function(){
+    var province = $('#province').val();
+    var url = '{{baseurl '/admin/config/ajax/province'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {province: province}
+    }).done(function(jsonData) {
+        var opt = '<option value="-1" selected>Lựa chọn Quận/Huyện</option>';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#district').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Quận/Huyện');
+    });
+});
+
+$('#district').change(function(){
+    var district = $('#district').val();
+    var url = '{{baseurl '/admin/config/ajax/district'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {district: district}
+    }).done(function(jsonData) {
+        var opt = '<option value="-1" selected>Lựa chọn Phường/Xã</option>';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#wards').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Phường/Xã');
+    });
+});
+
+$('#updated_province').change(function(){
+    var province = $('#updated_province').val();
+    var url = '{{baseurl '/admin/config/ajax/province'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {province: province}
+    }).done(function(jsonData) {
+        var opt = '';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#updated_district').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Quận/Huyện');
+    });
+});
+
+$('#updated_district').change(function(){
+    var district = $('#updated_district').val();
+    var url = '{{baseurl '/admin/config/ajax/district'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {district: district}
+    }).done(function(jsonData) {
+        var opt = '';
+        $.each(jsonData, function (i, getdata) {
+            var rowdata = '<option value='+getdata.code+'>';
+            rowdata += getdata.name;
+            rowdata += '</option>';
+            opt += rowdata;
+        });
+        $('#updated_wards').html(opt);
+    }).fail(function(jsonData) {
+        alert('Lỗi lấy dữ liệu Phường/Xã');
+    });
+});
+
+
+function getfeetransport() {
+    var kg = totalkg();
+    var province = $('#province').val();
+    var addressshop = $('#addressshop').val();
+    var url = '{{baseurl '/shop/delivery/feetransport'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {province: province, addressshop:addressshop, totalkg:kg}
+    }).done(function(data) {
+        $('#feetransport').html(formatvnd(data.fee));
+        var feetransport = 0;
+        var feeorder = 0;
+        if($('#feetransport').html()!=""){
+            feetransport = $('#feetransport').html().replace(/[&nbsp;₫.]+/g,"");
+        }
+        if($('#feeorder').html()!=""){
+            feeorder = $('#feeorder').html().replace(/[&nbsp;₫.]+/g,"");
+        }
+        totalOrders(feetransport,feeorder);
+    }).fail(function(data) {
+        alert('Lỗi lấy dữ liệu phí vận chuyển');
+    });
+};
+
+/*$('#addressshop').change(function(){
+        getfeetransport();
+});*/
+
+function getfeeorders() {
+    var feeorders;
+    var money = $('#totalmoney').val();
+   var url = '{{baseurl '/shop/delivery/feeorders'}}';
+    let token  = $('#csrf').val();
+    $.ajax({
+        headers: {"X-CSRF-Token": token },
+        url: url,
+        dataType: "json",
+        type: "post",
+        data: {money: money}
+    }).done(function(data) {
+        $('#feeorder').html(formatvnd(data.orders));
+        var feetransport = 0;
+        var feeorder = 0;
+        if($('#feetransport').html()!=""){
+            feetransport = $('#feetransport').html().replace(/[&nbsp;₫.]+/g,"");
+        }
+        if($('#feeorder').html()!=""){
+            feeorder = $('#feeorder').html().replace(/[&nbsp;₫.]+/g,"");
+        }
+        totalOrders(feetransport,feeorder);
+    }).fail(function(data) {
+        alert('Lỗi lấy dữ liệu phí thu hộ');
+    });
+};
+
+function totalOrders(feetransport,feeorder) {
+    var newTotal = parseInt(feetransport) + parseInt(feeorder);
+        $('#totalorders').html(formatvnd(newTotal));
+};
+
+function totalkg(){
+    var total = 0;
+    var list = document.getElementsByClassName("add");
+    var values = [];
+    for(var i = 0; i < list.length; ++i){
+        if(list[i].value!=''){
+            values.push(parseFloat(list[i].value));
+        }
+    }
+    if (values.length == 0){
+        return total;
+    }else{
+        total = values.reduce(function(previousValue, currentValue, index, array){
+            return previousValue + currentValue;
+        });
+        return total;
+    }
+}
+$('input[name="totalmoney"]').on('blur', function(){
+    const value = this.value.replace(/,/g, '');
+    this.value = parseFloat(value).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0
+    });
+});
+$('input[name="totalmoney"]').focus(
+        function(){
+            $(this).val('');
+        });
+function formatvnd(value){
+    const formatter = new Intl.NumberFormat('vi-VN',{
+        style: 'currency',
+        currency: 'VND',
+        minimumFractionDigits: 0
+    }).format(value)
+    return formatter
+}
+</script>

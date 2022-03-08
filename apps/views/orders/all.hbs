@@ -1,0 +1,168 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý đơn hàng</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Tất cả đơn hàng</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="row" style="padding-bottom: 5px;">
+                <div class="col-lg-12 col-xs-12">
+                    <a class="btn btn-primary" style="color: white"><i class="fa fa-file-excel"> Kết xuất</i></a>
+                </div>
+            </div>
+            <!-- /.card -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <form action="/admin/orders/seach" method="post" id="seachorders">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control select2bs4" style="width: 100%;" name="s_status">
+                                                    <option value="-1">Tất cả đơn hàng</option>
+                                                    {{#forEach data.status}}
+                                                        <option value="{{id}}">{{name}}</option>
+                                                    {{/forEach}}
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="s_fullname" placeholder="Họ tên khách hàng">
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select class="form-control select2bs4" style="width: 100%;" name="s_city">
+                                                    <option value="-1">Khu vực giao hàng</option>
+                                                    {{#forEach data.city}}
+                                                        <option value="{{code}}">{{name}}</option>
+                                                    {{/forEach}}
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="s_phone" placeholder="Số điện thoại">
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <div class="box-footer" align="center">
+                                        <button type="submit" class="btn btn-outline-danger">Tìm kiếm</button>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!-- /.row -->
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tỉnh/Thành phố</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Khách hàng</th>
+                                    <th>SL Sản phẩm</th>
+                                    <th>Giá trị</th>
+                                    <th>Ngày đặt</th>
+                                    <th style="width: 20%">Thao tác</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                            {{#forEach data.listsorders}}
+                                <tr>
+                                    <td>{{index}}</td>
+                                    <td>{{cityname}}</td>
+                                    <td>
+                                        <b>{{code}}</b>
+                                    <br>
+                                        <span class="badge bg-danger">{{statusname}}</span>
+                                    </td>
+                                    <td>{{full_name}}<br>{{phone}}</td>
+                                    <td><b>{{totalqty}}</b></td>
+                                    <td style="color: red">{{formatvnd totals}}</td>
+                                    <td>{{formatdatetime created_at}}</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-default btn-sm" data-toggle="modal" data-target="#updatedstaff">
+                                            <i class="fas fa-print">
+                                            </i>
+                                          In
+                                        </button>
+                                        <a  class="btn btn-primary btn-sm" href="/admin/orders/detail/{{code}}">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{code}}"  data-deleteurl="{{baseurl '/admin/orders/delete/'}}{{code}}" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                {{/forEach}}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tỉnh/Thành phố</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Khách hàng</th>
+                                    <th>SL Sản phẩm</th>
+                                    <th>Giá trị</th>
+                                    <th>Ngày đặt</th>
+                                    <th style="width: 20%">Thao tác</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa đơn hàng mua hộ</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                    <div class="modal-body">
+                        <p>Đồng ý xóa đơn hàng mua hộ mã <b><span id="name"></span></b>?</p>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <form role="form" id="delForm" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                                <button type="submit" class="btn btn-danger">Xóa</button>
+                            </form>
+                        </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,185 @@
+<div class="breadcrumbs-area position-relative" style="background: #f6f6f6 url('/admin/assets/images/bg/1-1.jpg') no-repeat scroll center center/cover; padding: 100px 0;">
+<div class="container">
+<div class="row">
+<div class="col-12 text-center">
+<div class="breadcrumb-content position-relative section-content">
+<h3 class="title-3">{{data.aPro.namecate}}</h3>
+<ul>
+    <li><a href="#">Sản phẩm </a></li>
+<li>{{data.aPro.namecate}}</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Single Product Main Area Start -->
+<div class="single-product-main-area">
+<div class="container container-default custom-area">
+<div class="row">
+<div class="col-lg-5 col-custom">
+<div class="product-details-img horizontal-tab">
+<div class="product-slider popup-gallery product-details_slider" data-slick-options='{
+                        "slidesToShow": 1,
+                        "arrows": false,
+                        "fade": true,
+                        "draggable": false,
+                        "swipe": false,
+                        "asNavFor": ".pd-slider-nav"
+                        }'>
+<!---- hinh anh dinh kem---->
+{{#forEach data.viewimages}}
+<div class="single-image border">
+<a href="/upload/products/{{slug}}/{{images}}">
+        <img src="/upload/products/{{slug}}/views/{{file}}">
+</a>
+</div>
+{{/forEach}}
+   <!------ ----->
+</div>
+    <div class="pd-slider-nav product-slider" data-slick-options='{
+                        "slidesToShow": 4,
+                        "asNavFor": ".product-details_slider",
+                        "focusOnSelect": true,
+                        "arrows" : false,
+                        "spaceBetween": 30,
+                        "vertical" : false
+                        }' data-slick-responsive='[
+                            {"breakpoint":1501, "settings": {"slidesToShow": 4}},
+                            {"breakpoint":1200, "settings": {"slidesToShow": 4}},
+                            {"breakpoint":992, "settings": {"slidesToShow": 4}},
+                            {"breakpoint":575, "settings": {"slidesToShow": 3}}
+                        ]'>
+        <!---- hinh anh dinh kem---->
+        {{#forEach data.viewimages}}
+            <div class="single-thumb border">
+                    <img src="/upload/products/{{slug}}/views/{{file}}">
+            </div>
+        {{/forEach}}
+        <!------ ----->
+    </div>
+</div>
+</div>
+<div class="col-lg-7 col-custom">
+<div class="product-summery position-relative">
+<div class="product-head mb-3">
+<h2 class="product-title">{{data.aPro.name}}</h2>
+</div>
+    <div class="price-box mb-2">
+        <span class="regular-price" style="color: red">{{formatvnd data.aPro.price}} - {{data.aPro.nameunit}}</span>
+    </div>
+    <div class="product-rating mb-3">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-o"></i>
+    </div>
+    <p class="desc-content">
+        {{{data.aPro.short}}}
+    </p>
+    <div class="quantity-with_btn mb-4">
+        <!--<div class="quantity">
+            <div class="cart-plus-minus">
+                <input  class="cart-plus-minus-box" value="1" min="1" step="1" type="number" title="Vui lòng chọn số lượng." name="quantity" id="quantity">
+                <div class="dec qtybutton">-</div>
+                <div class="inc qtybutton">+</div>
+            </div>
+        </div>-->
+        <div class="add-to_cart">
+            <a href="/addcart/{{data.aPro.sid}}/{{data.aPro.id}}" class="btn obrien-button primary-btn">Thêm vào giỏ hàng</a>
+        </div>
+    </div>
+   <!-- <div class="buy-button mb-5">
+        <a href="/cart" class="btn obrien-button-3 black-button">XEM GIỎ HÀNG</a>
+    </div>-->
+    <div class="social-share mb-4">
+        <span>Chia sẻ :</span>
+        <a href="#"><i class="fa fa-facebook-square facebook-color"></i></a>
+        <a href="#"><i class="fa fa-twitter-square twitter-color"></i></a>
+        <a href="#"><i class="fa fa-linkedin-square linkedin-color"></i></a>
+        <a href="#"><i class="fa fa-pinterest-square pinterest-color"></i></a>
+    </div>
+    <div class="payment">
+        <a href="#"><img class="border" src="/admin/assets/images/payment/img-payment.png" alt="Payment"></a>
+    </div>
+</div>
+</div>
+</div>
+    <div class="row mt-no-text">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active text-uppercase" id="home-tab" data-toggle="tab" href="#connect-1" role="tab" aria-selected="true">Chi tiết sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" id="profile-tab" data-toggle="tab" href="#connect-2" role="tab" aria-selected="false">Chính sách vận chuyển</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" id="contact-tab" data-toggle="tab" href="#connect-3" role="tab" aria-selected="false">Đánh giá</a>
+                </li>
+            </ul>
+            <div class="tab-content mb-text" id="myTabContent">
+                <div class="tab-pane fade show active" id="connect-1" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="desc-content">
+                      {{{data.aPro.content}}}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="desc-content">
+                        {{{data.aPro.shipping}}}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="connect-3" role="tabpanel" aria-labelledby="profile-tab">
+                    <!-- Start Single Content -->
+                    <div class="product_tab_content  border p-3">
+                        <div class="rating_wrap">
+                            <h5 class="rating-title-1 mb-2">Gửi đánh giá Review sản phẩm </h5>
+                            <p class="mb-2">Địa chỉ email của bạn sẽ được bảo mật. Các trường bắt buộc được đánh dấu *</p>
+                            <h6 class="rating-title-2 mb-2">Điểm đánh giá</h6>
+                            <div class="rating_list mb-4">
+                                <div class="review_info">
+                                    <div class="product-rating mb-3">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End RAting Area -->
+                        <div class="comments-area comments-reply-area">
+                            <div class="row">
+                                <div class="col-lg-12 col-custom">
+                                    <form action="#" class="comment-form-area">
+                                        <div class="row comment-input">
+                                            <div class="col-md-6 col-custom comment-form-author mb-3">
+                                                <label>Họ và Tên<span class="required">*</span></label>
+                                                <input type="text" required="required" name="name">
+                                            </div>
+                                            <div class="col-md-6 col-custom comment-form-emai mb-3">
+                                                <label>Địa chỉ Email <span class="required">*</span></label>
+                                                <input type="text" required="required" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="comment-form-comment mb-3">
+                                            <label>Nội dung Review đánh giá</label>
+                                            <textarea class="comment-notes" required="required" name="long"></textarea>
+                                        </div>
+                                        <div class="comment-form-submit">
+                                            <input type="submit" value="Gửi Review" class="comment-submit btn obrien-button primary-btn">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

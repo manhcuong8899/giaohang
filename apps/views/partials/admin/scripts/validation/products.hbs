@@ -1,0 +1,225 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#ContentProductForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                branch:{
+                    required: true,
+                    minlength:5,
+                },
+                short:{
+                    required: true,
+                },
+                content:{
+                    required: true,
+                },
+                parent_cate:{
+                    valueNotEquals:"-1",
+                },
+                unit_id:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập tên hàng hóa",
+                    minlength: "Lớn hơn 5 ký tự"
+                },
+                branch: {
+                    required: "Nhập Xuất xứ/Thương hiệu",
+                    minlength: "Lớn hơn 5 ký tự"
+                },
+                short:{
+                    required: "Nội dung mô tả tóm tắt hàng hóa",
+                },
+                content:{
+                    required: "Nội dung mô tả chi tiết hàng hóa",
+                },
+                parent_cate:{
+                    valueNotEquals:"Lựa chọn danh mục hàng hóa",
+                },
+                unit_id:{
+                        valueNotEquals:"Lựa chọn đơn vị tính hàng hóa",
+                    }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+                element.closest('.card-primary').append(error);
+                element.closest('.card-primary').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditContentProductForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                branch:{
+                    required: true,
+                    minlength:5,
+                },
+                short:{
+                    required: true,
+                },
+                content:{
+                    required: true,
+                },
+                parent_cate:{
+                    valueNotEquals:"-1",
+                },
+                unit_id:{
+                    valueNotEquals:"-1",
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập tên hàng hóa",
+                    minlength: "Lớn hơn 5 ký tự"
+                },
+                branch: {
+                    required: "Nhập Xuất xứ/Thương hiệu",
+                    minlength: "Lớn hơn 5 ký tự"
+                },
+                short:{
+                    required: "Nội dung mô tả tóm tắt hàng hóa",
+                },
+                content:{
+                    required: "Nội dung mô tả chi tiết hàng hóa",
+                },
+                parent_cate:{
+                    valueNotEquals:"Lựa chọn danh mục hàng hóa",
+                },
+                unit_id:{
+                    valueNotEquals:"Lựa chọn đơn vị tính hàng hóa",
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element){
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#SellingForm').validate({
+            rules: {
+                p_id:{
+                    valueNotEquals:"-1",
+                },
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                price:{
+                    required: true,
+                },
+                amount:{
+                    required: true,
+                }
+            },
+            messages: {
+                p_id:{
+                    valueNotEquals:"Lựa chọn sản phẩm gán thông tin",
+                },
+                name: {
+                    required: "Nhập tên nhà sản xuất",
+                },
+                price: {
+                    required: "Nhận giá bán sản phẩm",
+                },
+                amount:{
+                    required: "Nhập số lượng sản phẩm",
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+                element.closest('.card-primary').append(error);
+                element.closest('.card-primary').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditSellingForm').validate({
+            rules: {
+                p_id:{
+                    valueNotEquals:"-1",
+                },
+                name:{
+                    required: true,
+                    minlength:5,
+                },
+                price:{
+                    required: true,
+                },
+                amount:{
+                    required: true,
+                }
+            },
+            messages: {
+                p_id:{
+                    valueNotEquals:"Lựa chọn sản phẩm gán thông tin",
+                },
+                name: {
+                    required: "Nhập tên nhà sản xuất",
+                },
+                price: {
+                    required: "Nhận giá bán sản phẩm",
+                },
+                amount:{
+                    required: "Nhập số lượng sản phẩm",
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+                element.closest('.card-primary').append(error);
+                element.closest('.card-primary').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+    });
+</script>

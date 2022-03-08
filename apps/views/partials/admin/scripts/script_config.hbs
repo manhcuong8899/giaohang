@@ -1,0 +1,136 @@
+<script>
+    $('#type').change(function(){
+        var type = $('#type').val();
+        if(type==1)
+        {
+            $("#totalorder").css("display","block");
+            $("#amountcount").css("display","none");
+        }
+        if(type==2){
+            $("#totalorder").css("display","none");
+            $("#amountcount").css("display","block");
+        }
+        if(type==0)
+        {
+            $("#totalorder").css("display","none");
+            $("#amountcount").css("display","none");
+        }
+    });
+    function editunit(url){
+        $('#EditUnitsForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditUnitsForm').attr('action', url);
+                $('#EditUnitsForm [name="code"]').val(data.code);
+                $('#updatedunit').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin đơn vị hàng hóa!');
+            }
+        });
+    }
+    function editbank(url){
+        $('#EditBanksForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditBanksForm').attr('action', url);
+                $('#EditBanksForm [name="code"]').val(data.code);
+                $('#EditBanksForm [name="number"]').val(data.number);
+                $('#EditBanksForm [name="name"]').val(data.name);
+                $('#EditBanksForm [name="account"]').val(data.account);
+                $('#EditBanksForm [name="branch"]').val(data.branch);
+                $('#updatedbank').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin tài khoản ngân hàng!');
+            }
+        });
+    }
+    function editlocale(url){
+        $('#EditLocaleForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditLocaleForm').attr('action', url);
+                $('#EditLocaleForm [name="code"]').val(data.code);
+                $('#EditLocaleForm [name="name"]').val(data.name);
+                $('#EditLocaleForm [name="lat"]').val(data.lat);
+                $('#EditLocaleForm [name="long"]').val(data.long);
+                $('#EditLocaleForm [name="domain"]').val(data.domain).trigger("change");
+                $('#updatedlocale').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin khu vực Tỉnh/Thành phố');
+            }
+        });
+    }
+
+    function editdistrict(url){
+        $('#EditDistrictForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditDistrictForm').attr('action', url);
+                $('#EditDistrictForm [name="code"]').val(data.code);
+                $('#EditDistrictForm [name="name"]').val(data.name);
+                $('#EditDistrictForm [name="type"]').val(data.type);
+                $('#updateddistrict').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin khu vực Quận/Huyện');
+            }
+        });
+    }
+    function editbranch(url){
+        $('#EditBranchForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (branch) {
+                $('#EditBranchForm').attr('action', url);
+                $('#EditBranchForm [name="name"]').val(branch.name);
+                $('#EditBranchForm [name="phone"]').val(branch.phone);
+                $('#EditBranchForm [name="hotline"]').val(branch.hotline);
+                $('#EditBranchForm [name="address"]').val(branch.address);
+                $('#EditBranchForm [name="googlemap"]').val(branch.googlemap);
+                $('#EditBranchForm [name="province"]').val(branch.province).trigger("change");
+                $('#EditBranchForm [name="district"]').append( '<option  selected value="'+branch.district+'">'+branch.namedistrict+'</option>' );
+                $('#EditBranchForm [name="wards"]').append( '<option  selected value="'+branch.wards+'">'+branch.namewards+'</option>' );
+                $('#updatedbranch').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin Trạm vận chuyển');
+            }
+        });
+    }
+    function edittime(url){
+        $('#EditTimeForm')[0].reset();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "JSON",
+            success: function (data) {
+                $('#EditTimeForm').attr('action', url);
+                $('#EditTimeForm [name="name"]').val(data.name);
+                $('#EditTimeForm [name="val_from"]').val(data.val_from);
+                $('#EditTimeForm [name="val_to"]').val(data.val_to);
+                $('#EditTimeForm [name="type"]').val(data.type).trigger("change");
+                $('#updatedtime').modal('show');
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+                alert('Lỗi lấy dữ liệu thông tin thời gian giao hàng');
+            }
+        });
+    }
+</script>

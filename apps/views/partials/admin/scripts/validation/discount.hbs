@@ -1,0 +1,88 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#DiscountForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                },
+                value:{
+                    required: true,
+                },
+                discount:{
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập thông tin tên chiết khấu"
+                },
+                value: {
+                    required: "Nhập giá trị tính chiết khấu"
+                },
+                discount: {
+                    required: "Nhập giá trị chiết khấu"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditDiscountForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                },
+                value:{
+                    required: true,
+                },
+                discount:{
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập thông tin tên chiết khấu"
+                },
+                value: {
+                    required: "Nhập giá trị tính cước chiết khấu"
+                },
+                discount: {
+                    required: "Nhập giá trị cước chiết khấu"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+
+    });
+</script>

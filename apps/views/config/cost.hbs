@@ -1,0 +1,76 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Cấu hình chi phí</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Cấu hình chi phí</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <form role="form" id="ConfigCostForm" method="POST" action="/admin/config/cost">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin Cấu hình chi phí</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phí bảo hiểm đơn hàng vận chuyển (%)</label>
+                                        <input type="number" min="1" max="5" class="form-control" id="insurrance" placeholder="Phí bảo hiểm đơn hàng vận chuyển" name="insurrance" value="{{data.cost.insurrance}}">
+                                    </div>
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Phí chuyển khoản ngân hàng (vnđ)</label>
+                                        <input type="number" class="form-control" id="bank" placeholder="Phí chuyển khoản ngân hàng" name="bank" value="{{data.cost.bank}}">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Phí đổi địa chỉ giao (vnđ)</label>
+                                        <input type="number" class="form-control" id="changeaddress" placeholder="Phí đổi địa chỉ giao" name="changeaddress" value="{{data.cost.changeaddress}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phí đổi trả hàng (vnđ)</label>
+                                        <input type="number" class="form-control" id="returns" placeholder="Phí đổi trả hàng" name="returns" value="{{data.cost.returns}}">
+                                    </div>
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->

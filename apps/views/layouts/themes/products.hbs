@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    {{> themes/include/headers}}
+</head>
+<body>
+<div class="home-wrapper home-2">
+    <!-- Header Area Start Here -->
+    <header class="main-header-area">
+        <!-- Main Header Area Start -->
+        <div class="main-header" style="background-color: #234922;">
+            {{> themes/include/main_header}}
+        </div>
+        <!-- Main Header Area End -->
+        <!-- Sticky Header Start Here-->
+        <div class="main-header header-sticky" style="background-color: #234922;">
+            {{> themes/include/main_header-sticky}}
+        </div>
+        <!-- Sticky Header End Here -->
+        <!-- off-canvas menu start -->
+        <aside class="off-canvas-wrapper" id="mobileMenu">
+            {{> themes/include/mobile}}
+        </aside>
+        <!-- off-canvas menu end -->
+    </header>
+    {{{body}}}
+    <!-- Brand Logo Area Start Here -->
+    <div class="brand-logo-area mt-text mb-no-text">
+        {{> themes/include/brand}}
+    </div>
+    <footer class="footer-area">
+        {{> themes/include/footer}}
+    </footer>
+    <!-- Footer Area End Here -->
+</div>
+<!-- Modal Area Start Here -->
+<div class="modal fade obrien-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    {{> themes/include/modal}}
+</div>
+<!-- Modal Area End Here -->
+
+<!-- Scroll to Top Start -->
+<a class="scroll-to-top" href="#">
+    <i class="ion-chevron-up"></i>
+</a>
+{{> themes/include/scripts}}
+</body>
+</html>

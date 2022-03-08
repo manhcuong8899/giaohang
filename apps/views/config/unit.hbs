@@ -1,0 +1,178 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý cấu hình đơn vị hàng hóa</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">cấu hình đơn vị hàng hóa</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <form role="form" id="ConfigUnitsForm" method="POST" action="/admin/config/unit">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm mới đơn vị</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tên đơn vị</label>
+                                        <input type="text" class="form-control" id="code" placeholder="Đơn vị" name="code">
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Thêm mới</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--- Danh sách Danh mục -->
+                <div class="col-8">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Danh sách đơn vị</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên đơn vị</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#forEach data.units}}
+                                            <tr>
+                                                <td>{{index}}</td>
+                                                <td>{{code}}</td>
+                                                <td align="right">
+                                                    <button  class="btn btn-info btn-sm" onclick="editunit('{{baseurl '/admin/config/unit/view/'}}{{id}}')">
+                                                        <i class="fas fa-edit">
+                                                        </i>
+                                                        Sửa
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{code}}"  data-deleteurl="{{baseurl '/admin/config/unit/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                        <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            {{/forEach}}
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên đơn vị</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <!--- Model Update--->
+    <div class="modal fade" id="updatedunit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật thông tin đơn vị</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="EditUnitsForm" method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Tên đơn vị</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Tên đơn vị" name="code" id="code">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /.modal-dialog -->
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa thiết lập hàng hóa</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Đồng ý xóa thiết lập đơn vị hàng hóa <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="delForm" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>
+

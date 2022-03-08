@@ -1,0 +1,338 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý Vai trò người dùng</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">Vai trò người dùng</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="row" style="padding-bottom: 5px;">
+                <div class="col-lg-12 col-xs-12">
+                    <a class="btn btn-success" style="color: white" data-toggle="modal" data-target="#createdroles"><i class="fa fa-plus-circle"> Thêm Vai trò</i></a>
+                    <a class="btn btn-info" style="color: white" href="/admin/users/permissions"><i class="fa fa-user"> Cấu hình quyền hạn</i></a>
+
+                </div>
+            </div>
+            <!-- /.card -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã Role</th>
+                                    <th>Tên Role</th>
+                                    <th style="width: 20%">Thao tác</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>administrator</td>
+                                    <td>Supper Admin</td>
+                                    <td class="project-actions text-right">
+                                      <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                      </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>admin</td>
+                                    <td>Admin</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>manage</td>
+                                    <td>Quản lý</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>business</td>
+                                    <td>Nhân viên kinh doanh</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>shipper</td>
+                                    <td>Nhân viên giao hàng</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>accountant</td>
+                                    <td>Kế toán</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>warehouse</td>
+                                    <td>Nhân viên kho</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>shopmanage</td>
+                                    <td>Quản lý Shop</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>shopstaff</td>
+                                    <td>Nhân viên Shop</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>supplymanage</td>
+                                    <td>Quản lý bên đơn vị cung cấp</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>supplystaff</td>
+                                    <td>Nhân viên bên đơn vị cung cấp</td>
+                                    <td class="project-actions text-right">
+                                        <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatedroles">
+                                            <i class="fas fa-eye">
+                                            </i>
+                                            Xem
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete">
+                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã Role</th>
+                                    <th>Tên Role</th>
+                                    <th style="width: 20%">Thao tác</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+    <div class="modal fade" id="createdroles">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tạo mới vai trò người dùng (Roles)</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="addNewStaffForm" method="POST" action="/admin/users/roles/created">
+                    <input type="hidden" name="_token" value="C7NJGhqDPzN2eFbQO2klBjJwyb3EhFIZ59RdsIbf">
+                <div class="modal-body">
+                    <div class="row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Mã Role</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Nhập Mã Role" name="name" id="name" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Tên Role</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Nhập Tên Role" name="label" id="label" required>
+                                </div>
+                                    <!-- /.input group -->
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Xác nhận</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!--- Model Update--->
+    <div class="modal fade" id="updatedroles">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông tin vai trò người dùng (Roles)</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="addNewStaffForm" method="POST" action="/admin/users/roles/updated">
+                    <input type="hidden" name="_token" value="C7NJGhqDPzN2eFbQO2klBjJwyb3EhFIZ59RdsIbf">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Mã Role</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Nhập Mã Role" name="name" id="name" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Tên Role</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Nhập Tên Role" name="label" id="label" required>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    </div>
+    <!---- Modal Xác nhận xóa-->
+
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa tài khoản</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                    <div class="modal-body">
+                        <p>Đồng ý xóa tài khoản <b><span id="name"></span></b>?</p>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <form role="form" id="dellForm" method="DELETE">
+                                <input type="hidden" name="_token">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                            </form>
+                        </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>

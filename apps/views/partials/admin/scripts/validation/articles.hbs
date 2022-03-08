@@ -1,0 +1,98 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            return arg != element.value;
+        }, "Value must not equal arg.");
+
+      /*  $.validator.setDefaults({
+            submitHandler: function () {
+                alert( "Form successful submitted!" );
+            }
+        });*/
+        $('#ArticlesForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength: 5,
+                },
+                cate_id:{
+                    valueNotEquals:"-1",
+                },
+                order:{
+                    required: true,
+                },
+                short:{
+                    required: true,
+                },
+                cotent:{
+                    required: true,
+                },
+            },
+            messages: {
+                name: {
+                    required: "Nhập tiêu đề bài viết",
+                    minlength: "Lớn hơn 5 ký tự"
+                },
+                cate_id:{
+                    valueNotEquals:"Lựa chọn danh mục bài viết",
+                },
+                order:{
+                    required: "Thứ tự bài viết",
+                },
+                short:{
+                    required: "Nội dung tóm tắt bài viết",
+                },
+                content:{
+                    required: "Nội dung chi tiết bài viết",
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+                element.closest('.card-primary').append(error);
+                element.closest('.card-primary').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+
+        $('#EditArticlesForm').validate({
+            rules: {
+                name:{
+                    required: true,
+                    minlength: 3,
+                },
+                order:{
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Nhập tên danh mục",
+                    minlength: "Lớn hơn 6 ký tự"
+                },
+                order: {
+                    required: "Nhập thứ tự danh mục"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+</script>

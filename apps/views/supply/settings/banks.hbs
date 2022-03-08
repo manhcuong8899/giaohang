@@ -1,0 +1,259 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý thông tin tài khoản ngân hàng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                    <li class="breadcrumb-item active">Thông tin tài khoản ngân hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <form role="form" id="ConfigBanksForm" method="POST" action="/supply/settings/banks">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm tài khoản ngân hàng</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Ngân hàng</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Tên ngân hàng" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mã Ngân hàng</label>
+                                        <input type="text" class="form-control" id="code" placeholder="Mã ngân hàng. Ví dụ SHB" name="code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số tài khoản</label>
+                                        <input type="number" class="form-control" id="number" placeholder="Số tài khoản ngân hàng" name="number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tên tài khoản</label>
+                                        <input type="text" class="form-control" id="account" placeholder="Số tài khoản ngân hàng" name="account">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Chi nhánh</label>
+                                        <input type="text" class="form-control" id="branch" placeholder="Chi nhánh ngân hàng" name="branch">
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--- Danh sách Danh mục -->
+            <div class="col-9">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách tài khoản ngân hàng</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã ngân hàng</th>
+                                        <th>Số tài khoản</th>
+                                        <th>Tên tài khoản</th>
+                                        <th>Chi nhánh</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    {{#forEach data.banks}}
+                                        <tr>
+                                            <td>{{index}}</td>
+                                            <td>{{code}}</td>
+                                            <td>
+                                            {{#ifvalue setdefault 1}}
+                                                <b style="color: red">{{number}}</b>
+                                            {{/ifvalue}}
+                                                {{#ifvalue setdefault 0}}
+                                                    {{number}}
+                                                {{/ifvalue}}
+
+                                            </td>
+                                            <td>{{account}}</td>
+                                            <td>{{branch}}</td>
+                                            <td align="right">
+                                                <button  class="btn btn-info btn-sm" onclick="editbank('{{baseurl '/supply/settings/banks/view/'}}{{id}}')">
+                                                    <i class="fas fa-edit">
+                                                    </i>
+                                                    Sửa
+                                                </button>
+                                                {{#ifvalue setdefault 0}}
+                                                    <button type="button" class="btn btn-primary btn-sm" data-id="{{id}}" data-name="{{number}}"  data-defaulturl="{{baseurl '/supply/settings/banks/default/'}}{{id}}" data-toggle="modal" data-target="#confirmDefault">
+                                                        <i  class="fas fa-plus" data-toggle="tooltip" title="Thiết lập tài khoản đối soát mặc định"></i> Đối soát
+                                                    </button>
+                                                {{/ifvalue}}
+
+                                                <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{number}}"  data-deleteurl="{{baseurl '/supply/settings/banks/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                    <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                </button>
+
+
+                                            </td>
+                                        </tr>
+                                    {{/forEach}}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã ngân hàng</th>
+                                        <th>Số tài khoản</th>
+                                        <th>Tên tài khoản</th>
+                                        <th>Chi nhánh</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!--- Model Update--->
+<div class="modal fade" id="updatedbank">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật thông tin ngân hàng</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" id="EditBanksForm" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Ngân hàng</label>
+                                <input type="text" class="form-control" id="name" placeholder="Tên ngân hàng" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label>Mã Ngân hàng</label>
+                                <input type="text" class="form-control" id="code" placeholder="Mã ngân hàng. Ví dụ SHB" name="code">
+                            </div>
+                            <div class="form-group">
+                                <label>Số tài khoản</label>
+                                <input type="number" class="form-control" id="number" placeholder="Số tài khoản ngân hàng" name="number">
+                            </div>
+                            <div class="form-group">
+                                <label>Tên tài khoản</label>
+                                <input type="text" class="form-control" id="account" placeholder="Số tài khoản ngân hàng" name="account">
+                            </div>
+                            <div class="form-group">
+                                <label>Chi nhánh</label>
+                                <input type="text" class="form-control" id="branch" placeholder="Chi nhánh ngân hàng" name="branch">
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /.modal-dialog -->
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Xác nhận xóa thiết lập tài khoản ngân hàng</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Đồng ý xóa thiết lập tài khoản ngân hàng <b><span id="name"></span></b>?</p>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <form role="form" id="delForm" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</div>
+
+<!-- /.modal-dialog -->
+<div class="modal fade" id="confirmDefault">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Xác nhận thiết lập tài khoản đối soát</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Đồng ý Xác nhận thiết lập tài khoản <b><span id="name"></span></b> làm tài khoản đối soát?</p>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <form role="form" id="defaultForm" method="POST">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <button type="submit" class="btn btn-success">Đồng ý</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</div>

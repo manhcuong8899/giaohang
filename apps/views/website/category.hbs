@@ -1,0 +1,217 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Quản lý danh mục</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                        <li class="breadcrumb-item active">cấu hình danh mục</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4">
+                    <form role="form" id="CategoryForm" method="POST" action="/admin/category/{{data.code}}">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm mới danh mục</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tên danh mục</label>
+                                        <input type="text" class="form-control" id="tittle" placeholder="Tên danh mục" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mã danh mục</label>
+                                        <input type="text" class="form-control" id="code" placeholder="Mã danh mục nếu có" name="code">
+                                    </div>
+
+                                    <!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>Thẻ keywords</label>
+                                        <textarea class="form-control" id="keywords" type="text" name="keywords" rows="3"/></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thẻ description</label>
+                                        <textarea class="form-control" id="description" type="text" name="description" rows="3"/></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thứ tự</label>
+                                        <input type="number" class="form-control" min="1" id="orders" placeholder="Sắp xếp thứ tự danh mục" name="orders" value="1">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer" align="center">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Lưu Lại</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--- Danh sách Danh mục -->
+                <div class="col-8">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">Danh sách danh mục</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="all" class="table table-bordered table-striped" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên danh mục</th>
+                                                <th>Mã danh mục</th>
+                                                <th>Loại danh mục</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#forEach data.categories}}
+                                                <tr>
+                                                    <td>{{index}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{code}}</td>
+                                                    <td>{{type}}</td>
+                                                    <td align="right">
+                                                        <button  class="btn btn-info btn-sm" onclick="editcategory('{{baseurl '/admin/category/view/'}}{{id}}')">
+                                                            <i class="fas fa-edit">
+                                                            </i>
+                                                            Sửa
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm" data-id="{{id}}" data-name="{{name}}"  data-deleteurl="{{baseurl '/admin/category/delete/'}}{{id}}" data-toggle="modal" data-target="#confirmDelete">
+                                                            <i  class="fas fa-trash" data-toggle="tooltip" title="Xóa"></i> Xóa
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            {{/forEach}}
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên danh mục</th>
+                                                <th>Mã danh mục</th>
+                                                <th>Loại danh mục</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <!--- Model Update--->
+    <div class="modal fade" id="updatedcategory">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật thông tin danh mục</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" id="EditCategoryForm" method="POST">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <input type="text" class="form-control" id="tittle" placeholder="Tên danh mục" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mã danh mục</label>
+                                    <input type="text" class="form-control" id="code" placeholder="Mã danh mục nếu có" name="code">
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Thẻ keywords</label>
+                                    <textarea class="form-control" id="keywords" type="text" name="keywords" rows="3"/></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Thẻ description</label>
+                                    <textarea class="form-control" id="description" type="text" name="description" rows="3"/></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Thứ tự</label>
+                                    <input type="number" class="form-control" min="1" id="orders" placeholder="Sắp xếp thứ tự danh mục" name="orders">
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!---- Modal Xác nhận xóa-->
+
+    <div class="modal fade" id="confirmDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận xóa danh mục</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Đồng ý xóa danh mục <b><span id="name"></span></b>?</p>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <form role="form" id="delForm" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    </div>
